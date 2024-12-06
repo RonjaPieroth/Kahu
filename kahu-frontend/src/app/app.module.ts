@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginFormComponent } from './before-login/login-form/login-form.component';
 import { SignupFormComponent } from './before-login/signup-form/signup-form.component';
+import { ProfilePageShelterComponent } from './shelter-profile/profile-page-shelter/profile-page-shelter.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SignupFormComponent } from './before-login/signup-form/signup-form.comp
     NavbarComponent,
     FooterComponent,
     LoginFormComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    ProfilePageShelterComponent
   ],
   imports: [
     BrowserModule,

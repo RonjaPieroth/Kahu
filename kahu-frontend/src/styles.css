@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+  --beige-color: #E3DAC5;
+  --orange-color: #F4B473;
+  --brown-color: #7B3609;
+  --green-color: #8A8E3F;
+  --light-brown-color: #A77443 !important;
+
+}
+
+.btn.btn-primary{
+  background-color: var(--light-brown-color);
+  border: var(--light-brown-color);
+}
+
+nav.bg-body-tertiary{
+  background-color: var(--beige-color) !important;
+}
+
+.beige{
+  background-color: var(--beige-color);
+}
+
+div.card{
+  background-color: var(--beige-color);
+}
+
