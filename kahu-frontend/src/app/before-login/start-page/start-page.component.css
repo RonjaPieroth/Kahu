@@ -1,3 +1,7 @@
 .card{
   flex: 1
 }
+
+.container{
+  height: 100vh;
+}
