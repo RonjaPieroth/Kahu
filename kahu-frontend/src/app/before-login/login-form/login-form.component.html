@@ -1,1 +1,22 @@
-<p>login-form works!</p>
+
+<div class="container">
+  <div *ngIf="loginInvalid" class="text-center p-5 pb-3">
+    <p class="text-danger">The credentials you entered are incorrect. Please check and try again.</p>
+  </div>
+  <div class="d-flex justify-content-center">
+  <form class=" m-5" [formGroup]="loginForm">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+             formControlName="mail">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+  </form>
+  </div>
+</div>
+

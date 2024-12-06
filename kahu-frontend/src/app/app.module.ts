@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginFormComponent } from './before-login/login-form/login-form.component';
 import { SignupFormComponent } from './before-login/signup-form/signup-form.component';
 import { ProfilePageShelterComponent } from './shelter-profile/profile-page-shelter/profile-page-shelter.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -26,10 +27,11 @@ import { ProfilePageShelterComponent } from './shelter-profile/profile-page-shel
     SignupFormComponent,
     ProfilePageShelterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

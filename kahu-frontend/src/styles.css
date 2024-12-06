@@ -4,12 +4,24 @@
   --brown-color: #7B3609;
   --green-color: #8A8E3F;
   --light-brown-color: #A77443 !important;
-
 }
+
 
 .btn.btn-primary{
   background-color: var(--light-brown-color);
   border: var(--light-brown-color);
+  cursor: pointer;
+}
+
+.btn.btn-primary:disabled{
+  background-color: var(--light-brown-color);
+  opacity: 0.5;
+  border: var(--light-brown-color);
+  cursor: auto;
+}
+
+.btn.btn-primary:hover{
+  background-color: var(--brown-color);
 }
 
 nav.bg-body-tertiary{
@@ -23,4 +35,5 @@ nav.bg-body-tertiary{
 div.card{
   background-color: var(--beige-color);
 }
+
 

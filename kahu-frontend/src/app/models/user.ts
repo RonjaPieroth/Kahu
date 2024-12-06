@@ -1,8 +1,10 @@
 import {Pet} from './pet';
+import {Login} from './login';
 
 export interface User {
 
   id?: string;
+  login: Login;
   name: string;
   location: string; // linked to a location?
   lookingFor: string; //enum

@@ -1,1 +1,27 @@
-<p>signup-form works!</p>
+<div class="container">
+  <form class="m-4" [formGroup]="signUpForm" (submit)="onSubmit()">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="mail">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      <div *ngIf="signUpForm.get('mail')?.errors?.['email'] && signUpForm.controls['mail'].dirty" class="text-danger">
+        Please enter a valid email address
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="inputPassword" class="form-label">Password</label>
+      <input type="password" class="form-control" id="inputPassword" formControlName="password">
+      <div *ngIf="signUpForm.get('password')?.errors?.['minlength'] && signUpForm.controls['password'].dirty" class="text-danger">
+        Passwords needs to have at least 8 characters
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">Confirm password</label>
+      <input type="password" class="form-control" id="confirmPassword"  formControlName="confirmPassword">
+      <div *ngIf="!passwordsMatch && signUpForm.controls['confirmPassword'].dirty" class="text-danger">
+        Passwords do not match.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid || !passwordsMatch">Submit</button>
+  </form>
+</div>
