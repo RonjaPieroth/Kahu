@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {User} from '../models/user';
 
 @Component({
   selector: 'app-navbar',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+
+  loggedInUser?: User;
 
 }
