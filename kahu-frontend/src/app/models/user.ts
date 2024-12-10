@@ -1,22 +1,25 @@
 import {Pet} from './pet';
 import {Login} from './login';
+import {PetOwnershipType} from './pet-ownership-type';
+import {TypeOfHome} from './type-of-home';
+import {ResidentialArea} from './residential-area';
 
 export interface User {
 
   id?: string;
   login: Login;
   name: string;
-  location: string; // linked to a location?
-  lookingFor: string; //enum
+  postalCode: string;
+  lookingFor: PetOwnershipType[];
   hasChildren: boolean;
   hasGarden: boolean;
   hasPets: boolean;
   hasExperience: boolean;
   profilePicture: string;
   profileText: string;
-  typeOfHome: string; // enum
+  typeOfHome: TypeOfHome
   homeSize: number;
-  residentialArea: string; // enum
+  residentialArea: ResidentialArea
   livingSituationPicture: string[];
   age: number;
   likedPets: Pet[];

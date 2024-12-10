@@ -13,6 +13,7 @@ import { LoginFormComponent } from './before-login/login-form/login-form.compone
 import { SignupFormComponent } from './before-login/signup-form/signup-form.component';
 import { ProfilePageShelterComponent } from './shelter-profile/profile-page-shelter/profile-page-shelter.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { OwnerProfilFormComponent } from './future-pet-owner-profile/owner-profil-form/owner-profil-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     FooterComponent,
     LoginFormComponent,
     SignupFormComponent,
-    ProfilePageShelterComponent
+    ProfilePageShelterComponent,
+    OwnerProfilFormComponent
   ],
     imports: [
         BrowserModule,
