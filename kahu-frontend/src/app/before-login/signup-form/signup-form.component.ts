@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Login} from '../../models/login';
+import {LoginService} from '../../services/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -17,6 +19,9 @@ export class SignupFormComponent {
     }
   )
 
+  constructor(private loginService: LoginService, private router: Router) {
+  }
+
   get passwordsMatch(): boolean {
     const inputPassword = this.signUpForm.get("password")?.value;
     const inputConfirmPassword = this.signUpForm.get("confirmPassword")?.value;
@@ -28,6 +33,9 @@ export class SignupFormComponent {
       mail: this.signUpForm.get("mail")?.value,
       password: this.signUpForm.get("password")?.value
     };
-    console.log(loginObject);
+    this.loginService.signup(loginObject).subscribe(data => {
+      console.log(data);
+      this.router.navigate(["login"]);
+    });
   }
 }

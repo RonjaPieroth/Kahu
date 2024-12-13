@@ -6,7 +6,7 @@
     <p class="text-danger">The credentials you entered are incorrect. Please check and try again.</p>
   </div>
   <div class="d-flex justify-content-center">
-  <form class=" m-5" [formGroup]="loginForm">
+  <form class=" m-5" [formGroup]="loginForm" (submit)="submitLogin()">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"

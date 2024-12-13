@@ -14,6 +14,8 @@ import { SignupFormComponent } from './before-login/signup-form/signup-form.comp
 import { ProfilePageShelterComponent } from './shelter-profile/profile-page-shelter/profile-page-shelter.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { OwnerProfilFormComponent } from './future-pet-owner-profile/owner-profil-form/owner-profil-form.component';
+import {HttpClientModule} from '@angular/common/http';
+import {NgOptimizedImage} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,11 +31,13 @@ import { OwnerProfilFormComponent } from './future-pet-owner-profile/owner-profi
     ProfilePageShelterComponent,
     OwnerProfilFormComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgOptimizedImage
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

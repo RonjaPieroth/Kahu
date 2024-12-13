@@ -1,1 +1,131 @@
-<p>owner-profil-form works!</p>
+<div class="container screen">
+  <h2 class="text-center pb-4">Create your profile</h2>
+  <form [formGroup]="profileForm" (submit)="submitProfile()">
+    <p class="mb-3 fw-bold">Please answer some questions about yourself</p>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">What's your name?</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+    </div>
+    <div class="row">
+    <div class="mb-3 col-12 col-sm-6">
+      <label for="age" class="form-label">How old are you?</label>
+      <input type="number" class="form-control" id="age" step="1" formControlName="age">
+    </div>
+
+    <div class="mb-3 col-12 col-sm-6">
+      <label for="postal-code" class="form-label">Please enter your postal code</label>
+      <input type="number" class="form-control" id="postal-code" step="1" formControlName="postalCode">
+    </div>
+    </div>
+    <div class="mb-3">
+      <p>Do you already have experience with pets?</p>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="hasExperience" id="flexRadioYes" value="true" formControlName="hasExperience">
+        <label class="form-check-label" for="flexRadioYes">
+          Yes
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="hasExperience" id="flexRadioNo" value="false" formControlName="hasExperience">
+        <label class="form-check-label" for="flexRadioNo">
+          No
+        </label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="profile-picture" class="form-label">Would you like to upload a profile picture?</label>
+      <input type="text" class="form-control" id="profile-picture" formControlName="profilePicture">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">What would you like the current fosters of your future pet to know about you?</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="profileText"></textarea>
+    </div>
+    <hr>
+    <p class="mb-4 fw-bold">We would like to know more about your living situation</p>
+    <div class="row">
+    <div class="mb-3 col-12 col-sm-6">
+      <p>Are there children living in you household?</p>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="hasChildren" id="ChildrenYes" value="true" formControlName="hasChildren">
+        <label class="form-check-label" for="ChildrenYes">
+          Yes
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="hasChildren" id="ChildrenNo" value="false" formControlName="hasChildren">
+        <label class="form-check-label" for="ChildrenNo">
+          No
+        </label>
+      </div>
+    </div>
+    <div class="mb-3 col-12 col-sm-6">
+      <p>Are there other pets living in your household?</p>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="hasPets" id="pets-yes" value="true" formControlName="hasPets">
+        <label class="form-check-label" for="pets-yes">
+          Yes
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="hasPets" id="pets-no" value="false" formControlName="hasPets">
+        <label class="form-check-label" for="pets-no">
+          No
+        </label>
+      </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="mb-3 col-12 col-sm-6">
+      <p>How would you describe the area you are living in?</p>
+    <select class="form-select" aria-label="Default select example" formControlName="residentialArea">
+      <option selected value="">Choose an option</option>
+      <option *ngFor="let residentialArea of residentialAreaArray" [value]="residentialArea" >{{residentialArea}}</option>
+    </select>
+    </div>
+    <div class="mb-3 col-12 col-sm-6">
+      <p>What kind of home are you living in?</p>
+      <select class="form-select" aria-label="Default select example" formControlName="typeOfHome">
+        <option selected value="">Choose an option</option>
+        <option *ngFor="let home of typeOfHomeArray" [value]="home" >{{home}}</option>
+      </select>
+    </div>
+    </div>
+    <div class="row">
+    <div class="mb-3 col-12 col-sm-6">
+      <label for="size-home" class="form-label">How big is your home in m²?</label>
+      <input type="number" class="form-control" id="size-home" step="1" formControlName="homeSize">
+    </div>
+    <div class="mb-3 col-12 col-sm-6">
+      <p>Does your home have a garden?</p>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="hasGarden" id="garden-yes" value="true" formControlName="hasGarden">
+        <label class="form-check-label" for="garden-yes">
+          Yes
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="hasGarden" id="garden-no" value="false" formControlName="hasGarden">
+        <label class="form-check-label" for="garden-no">
+          No
+        </label>
+      </div>
+    </div>
+    </div>
+    <hr>
+    <p class="fw-bold mb-3">Last but not least - What are you looking for?</p>
+<div class="mb-4">
+  <p>Please select what kind of pet ownership you are lookíng for. Multiple answers are possible.</p>
+  <div class="form-check form-check-inline" *ngFor="let ownershipType of ownerShipTypeArray">
+    <input class="form-check-input" type="checkbox" [value]="ownershipType" id="{{ownershipType}}" [checked]="lookingForArray.includes(ownershipType)" (change)="onCheckboxChange($event)">
+    <label class="form-check-label" for="{{ownershipType}}">
+      {{ownershipType}}
+    </label>
+  </div>
+</div>
+    <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Submit</button>
+  </form>
+
+
+</div>

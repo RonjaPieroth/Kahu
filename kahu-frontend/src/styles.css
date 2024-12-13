@@ -36,10 +36,11 @@ div.card{
   background-color: var(--beige-color);
 }
 
+
 .screen{
-  height: 100vh;
-  margin-top: 120px;
-  margin-bottom: 120px;
+  flex: 1;
+  padding-top: 80px;
+  padding-bottom: 80px;
 
 }
 

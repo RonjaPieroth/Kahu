@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {Login} from '../../models/login';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -19,12 +20,14 @@ export class LoginFormComponent {
     }
   )
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
   }
 
-  submitLogin(): boolean{
-    const loginObject: Login = this.loginForm.value;
-    return this.loginService.checkLogin(loginObject);
+  submitLogin(): void {
+    this.loginService.login(this.loginForm.value).subscribe(data => {
+      localStorage.setItem('token', JSON.stringify(data.token));
+      this.router.navigate([""]);
+    });
   }
 
 }

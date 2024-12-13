@@ -9,19 +9,19 @@ export interface User {
   id?: string;
   login: Login;
   name: string;
+  age: number;
   postalCode: string;
-  lookingFor: PetOwnershipType[];
-  hasChildren: boolean;
-  hasGarden: boolean;
-  hasPets: boolean;
   hasExperience: boolean;
   profilePicture: string;
   profileText: string;
+  hasChildren: boolean;
+  hasPets: boolean;
   typeOfHome: TypeOfHome
-  homeSize: number;
   residentialArea: ResidentialArea
-  livingSituationPicture: string[];
-  age: number;
+  homeSize: number;
+  hasGarden: boolean;
+  /*livingSituationPicture: string[];*/
+  lookingFor: PetOwnershipType[];
   likedPets: Pet[];
   matches: Pet[];
 }
