@@ -1,4 +1,4 @@
 export enum PetOwnershipType {
   ADOPTION = "forever-home",
-  FOSTER = "forster-home"
+  FOSTER = "foster-home"
 }
