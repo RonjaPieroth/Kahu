@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {Login} from '../../models/login';
 import {Router} from '@angular/router';
+import {NavbarService} from '../../services/navbar.service';
 
 @Component({
   selector: 'app-login-form',
@@ -20,12 +21,13 @@ export class LoginFormComponent {
     }
   )
 
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private loginService: LoginService, private router: Router, private navbarService: NavbarService) {
   }
 
   submitLogin(): void {
     this.loginService.login(this.loginForm.value).subscribe(data => {
       localStorage.setItem('token', JSON.stringify(data.token));
+      this.navbarService.updateNavbar();
       this.router.navigate([""]);
     });
   }

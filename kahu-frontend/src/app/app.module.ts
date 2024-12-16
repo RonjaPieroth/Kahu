@@ -16,6 +16,12 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { OwnerProfilFormComponent } from './future-pet-owner-profile/owner-profil-form/owner-profil-form.component';
 import {HttpClientModule} from '@angular/common/http';
 import {NgOptimizedImage} from '@angular/common';
+import { PetOwnerMailboxComponent } from './future-pet-owner-profile/pet-owner-mailbox/pet-owner-mailbox.component';
+import { MessageFormComponent } from './future-pet-owner-profile/message-form/message-form.component';
+import { DashboardComponent } from './future-pet-owner-profile/dashboard/dashboard.component';
+import { MatchesComponent } from './future-pet-owner-profile/matches/matches.component';
+import { SwipePageComponent } from './future-pet-owner-profile/swipe-page/swipe-page.component';
+import { NotificationsComponent } from './future-pet-owner-profile/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +35,13 @@ import {NgOptimizedImage} from '@angular/common';
     LoginFormComponent,
     SignupFormComponent,
     ProfilePageShelterComponent,
-    OwnerProfilFormComponent
+    OwnerProfilFormComponent,
+    PetOwnerMailboxComponent,
+    MessageFormComponent,
+    DashboardComponent,
+    MatchesComponent,
+    SwipePageComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

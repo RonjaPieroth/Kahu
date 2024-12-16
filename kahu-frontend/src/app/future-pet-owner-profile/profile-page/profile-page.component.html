@@ -1,15 +1,18 @@
-<div class="container screen">
-  <div class="row mt-3 gap-5 mb-4">
+<div class="container screen" *ngIf="profile">
+  <div class="d-flex justify-content-end">
+  <i class="bi bi-gear" routerLink="/profile-form"></i>
+  </div>
+  <div class="row mt-2 gap-5 mb-4">
     <div class=" col-12 col-sm-4">
-      <img src="example-pics/example profile-pic.jpg" class="img-fluid rounded-circle p-4 p-sm-5">
+      <img src="{{profile.profilePicture}}" class="img-fluid rounded-circle p-4 p-sm-5">
     </div>
-    <div class=" col-12 col-sm-6 mt-sm-5">
+    <div class=" col-12 col-sm-6 mt-sm-4">
       <div class="card-body">
-        <h2 class="card-title mb-4">Anna Roberts</h2>
+        <h2 class="card-title mb-4">{{ profile.name }}</h2>
         <h5 class="card-subtitle mb-2 text-body-secondary">About me</h5>
-        <p class="card-text mb-4">Hi there! I'm Anna, a passionate animal lover and experienced pet owner. I've always had a soft spot for animals, and I’m excited to offer a loving home to a furry friend in need. I live in a spacious apartment with a small garden, and I'm looking for a forever pet companion to share my life with. In my free time, I enjoy outdoor activities, reading, and spending time with my family. If you're looking for a dedicated and caring pet parent, feel free to reach out!</p>
+        <p class="card-text mb-4">{{profile.profileText}}</p>
       </div>
-      <a href="#" class="btn btn-primary">Send Message</a>
+      <a [routerLink]="['/mailbox', profile.id]"  class="btn btn-primary">Send Message</a>
     </div>
   </div>
 
@@ -18,15 +21,16 @@
     <div class="card col-12 col-sm">
       <div class="card-body">
         <h5 class="card-title">Personal Details</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">Experienced Kahu</h6>
-        <p class="card-text">age: 33</p>
-        <p>Postal code: 12345</p>
+        <h6 class="card-subtitle mb-2 text-body-secondary" *ngIf="profile.hasExperience == true">Experienced Kahu</h6>
+        <h6 class="card-subtitle mb-2 text-body-secondary" *ngIf="profile.hasExperience == false">First Time Kahu</h6>
+        <p class="card-text">age: {{profile.age}}</p>
+        <p>Postal code: {{ profile.postalCode }}</p>
         <p>Is looking for: </p>
-        <figure class="figure">
+        <figure class="figure" *ngIf="profile.lookingFor.includes(PetOwnershipType.ADOPTION)">
           <img src="icons-pet-heart.png" class="figure-img img-fluid rounded me-5" alt="Ein Beispielbild">
           <figcaption class="figure-caption text-center me-5">Forever pet</figcaption>
         </figure>
-        <figure class="figure">
+        <figure class="figure" *ngIf="profile.lookingFor.includes(PetOwnershipType.FOSTER)">
           <img src="icon shelter.png" class="figure-img img-fluid rounded" alt="Ein Beispielbild">
           <figcaption class="figure-caption text-center">Foster pet</figcaption>
         </figure>
@@ -35,12 +39,12 @@
     <div class="card col-12 col-sm">
       <div class="card-body">
         <h5 class="card-title mb-3">Living Situation</h5>
-        <p>area: suburban</p>
-        <p class="card-text">type of home: apartment</p>
-        <p>Home size: 55 square meter</p>
-        <p>lives with children: yes</p>
-        <p>lives with other pets: no</p>
-        <p>has a garden: yes</p>
+        <p>area: {{profile.residentialArea}}</p>
+        <p class="card-text">type of home: {{ profile.typeOfHome }}</p>
+        <p>Home size: {{profile.homeSize}} m²</p>
+        <p>lives with children: {{profile.hasChildren ? "yes" : "no"}}</p>
+        <p>lives with other pets: {{profile.hasPets ? "yes" : "no"}}</p>
+        <p>has a garden: {{profile.hasGarden ? "yes" : "no"}}</p>
       </div>
     </div>
   </div>

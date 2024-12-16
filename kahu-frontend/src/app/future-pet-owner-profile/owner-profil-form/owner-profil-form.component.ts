@@ -9,6 +9,7 @@ import {Login} from '../../models/login';
 import {LoginService} from '../../services/login.service';
 import {UserService} from '../../services/user.service';
 import {NavbarService} from '../../services/navbar.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -18,9 +19,8 @@ import {NavbarService} from '../../services/navbar.service';
 })
 export class OwnerProfilFormComponent {
   login?: Login;
+  profile?: User;
   @Output() createdProfile = new EventEmitter();
-
-
 
 
   residentialAreaArray = Object.values(ResidentialArea);
@@ -29,10 +29,10 @@ export class OwnerProfilFormComponent {
 
   profileForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private userService: UserService, private navbarService: NavbarService) {
+  constructor(private fb: FormBuilder, private loginService: LoginService, private userService: UserService, private navbarService: NavbarService, private router: Router) {
 
     this.profileForm = fb.group(
-      {
+      { id: [],
         login: [],
         name: ["", [Validators.required]],
         age: ["", Validators.required],
@@ -40,12 +40,12 @@ export class OwnerProfilFormComponent {
         hasExperience: ["", Validators.required],
         profilePicture: [""],
         profileText: [""],
-        hasChildren:[Validators.required],
-        hasPets:[Validators.required],
-        typeOfHome:[Validators.required],
-        residentialArea: ["",Validators.required],
-        homeSize: ["",[Validators.required, Validators.min(1)]],
-        hasGarden: ["",Validators.required],
+        hasChildren: [Validators.required],
+        hasPets: [Validators.required],
+        typeOfHome: [Validators.required],
+        residentialArea: ["", Validators.required],
+        homeSize: ["", [Validators.required, Validators.min(1)]],
+        hasGarden: ["", Validators.required],
         lookingFor: this.fb.array([], minSelectedCheckboxes(1)),
         likedPets: [[]],
         matches: [[]]
@@ -56,8 +56,36 @@ export class OwnerProfilFormComponent {
   ngOnInit() {
     this.loginService.getProfile().subscribe(data => {
       this.login = data;
+      if (data.profile) {
+        this.profile = data.profile;
+        const newValues = {
+          id: this.profile.id,
+          name: this.profile.name,
+          age: this.profile.age,
+          postalCode: this.profile.postalCode,
+          hasExperience: this.profile.hasExperience.toString(),
+          profilePicture: this.profile.profilePicture,
+          profileText: this.profile.profileText,
+          hasChildren: this.profile.hasChildren.toString(),
+          hasPets: this.profile.hasPets.toString(),
+          typeOfHome: this.profile.typeOfHome,
+          residentialArea: this.profile.residentialArea,
+          homeSize: this.profile.homeSize,
+          hasGarden: this.profile.hasGarden.toString(),
+          lookingFor: this.profile.lookingFor,
+          likedPets: this.profile.likedPets,
+          matches: this.profile.matches
+        };
+        this.profileForm.patchValue(newValues);
+        const lookingForArray = this.profileForm.get('lookingFor') as FormArray;
+        lookingForArray.clear();
+        newValues.lookingFor.forEach(value => {
+          lookingForArray.push(this.fb.control(value));
+        });
+
+      }
       if (this.login) {
-        this.profileForm.patchValue({ login: {id: this.login.id, mail: this.login.mail, password: this.login.password} });
+        this.profileForm.patchValue({login: {id: this.login.id, mail: this.login.mail, password: this.login.password}});
       }
     });
   }
@@ -80,18 +108,35 @@ export class OwnerProfilFormComponent {
     return (this.profileForm.get('lookingFor') as FormArray).value;
   }
 
-  submitProfile(){
+  submitProfile() {
     let newProfile: User = this.profileForm.value;
     console.log(newProfile)
-    this.userService.createProfil(newProfile).subscribe(data => {
-      console.log(data);
-     this.profileCreated();
-     this.navbarService.updateNavbar();
+    if (this.profile){
+      this.updateProfile(newProfile);
+      return;
     }
+    this.createProfile(newProfile);
+  }
+
+  updateProfile(profile: User) {
+    this.userService.modifyProfil(profile).subscribe(data => {
+      console.log("profile has been updated:")
+      console.log(data);
+      this.router.navigate(["/profile"])
+    })
+  }
+
+  createProfile(profile: User): void {
+    this.userService.createProfil(profile).subscribe(data => {
+      console.log("profile has been created:")
+        console.log(data);
+        this.profileCreated();
+        this.navbarService.updateNavbar();
+      }
     );
   }
 
-  profileCreated(){
+  profileCreated() {
     this.createdProfile.emit()
   }
 

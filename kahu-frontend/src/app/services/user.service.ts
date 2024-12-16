@@ -21,4 +21,11 @@ export class UserService {
     })
   }
 
+  modifyProfil(user: User): Observable<User>{
+    return this.http.put<User>(this.url, user, {
+      headers: {
+        authorization: `Bearer ${this.loginService.getToken()}`
+      }
+    })
+  }
 }

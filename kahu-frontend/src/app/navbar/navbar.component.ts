@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../models/user';
 import {LoginService} from '../services/login.service';
 import {NavbarService} from '../services/navbar.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
   loggedInProfile?: User;
 
-  constructor(private loginService: LoginService, private navbarService: NavbarService) {
+  constructor(private loginService: LoginService, private navbarService: NavbarService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -38,6 +39,8 @@ export class NavbarComponent implements OnInit {
 
 logout():void{
     this.loginService.logout();
+    this.router.navigate([""])
+
 }
 
   updateNavbar(): void {

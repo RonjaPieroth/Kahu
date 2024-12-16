@@ -16,14 +16,14 @@
           swipe through profiles, send inquiries to shelters, and chat with them to arrange adoptions or foster
           placements. Kahu helps build loving connections between people and animals while promoting responsible pet
           ownership.</p>
-        <button class="btn btn-primary m-4" routerLink="/create-profile">create profile</button>
+        <button class="btn btn-primary m-4" routerLink="/sign-up">create profile</button>
       </div>
     </div>
   </div>
 </div>
 <ng-template #loggedInTemplate>
   <div *ngIf="loggedInProfile; else createProfil">
-    <h1 class="screen">Dashboard</h1>
+    <app-dashboard></app-dashboard>
   </div>
   <ng-template #createProfil>
 <app-owner-profil-form (createdProfile)="setUser()"></app-owner-profil-form>
