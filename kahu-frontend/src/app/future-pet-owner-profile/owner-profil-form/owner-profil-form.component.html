@@ -2,7 +2,8 @@
   <button class="btn btn-light" routerLink="/profile" *ngIf="profile">
     <i class="bi bi-arrow-left"></i> Zurück
   </button>
-  <h2 class="text-center pb-4">Create your profile</h2>
+  <h2 class="text-center pb-4" *ngIf="!profile">Create your profile</h2>
+  <h2 class="text-center pb-4" *ngIf="profile">Modify your profile</h2>
   <form [formGroup]="profileForm" (submit)="submitProfile()">
     <p class="mb-3 fw-bold">Please answer some questions about yourself</p>
 

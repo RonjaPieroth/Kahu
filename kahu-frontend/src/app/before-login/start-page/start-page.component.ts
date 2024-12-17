@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {User} from '../../models/user';
+import {PetOwner} from '../../models/pet-owner';
 import {LoginService} from '../../services/login.service';
 
 @Component({
@@ -9,7 +9,7 @@ import {LoginService} from '../../services/login.service';
 })
 export class StartPageComponent {
 
-  loggedInProfile?: User;
+  loggedInProfile?: PetOwner;
 
   constructor(private loginService: LoginService) {
   }

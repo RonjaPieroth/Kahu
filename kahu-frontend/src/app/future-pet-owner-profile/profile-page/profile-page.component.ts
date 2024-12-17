@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {User} from '../../models/user';
+import {PetOwner} from '../../models/pet-owner';
 import {LoginService} from '../../services/login.service';
-import {PetOwnershipType} from '../../models/pet-ownership-type';
+import {PetOwnershipType} from '../../models/enums/pet-ownership-type';
 
 @Component({
   selector: 'app-profile-page',
@@ -10,7 +10,7 @@ import {PetOwnershipType} from '../../models/pet-ownership-type';
 })
 export class ProfilePageComponent {
 
-  profile?: User;
+  profile?: PetOwner;
 
   constructor(private loginService: LoginService) {
     this.checkForProfile();

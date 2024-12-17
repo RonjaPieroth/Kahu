@@ -1,15 +1,16 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {ResidentialArea} from '../../models/residential-area';
-import {TypeOfHome} from '../../models/type-of-home';
-import {PetOwnershipType} from '../../models/pet-ownership-type';
+import {ResidentialArea} from '../../models/enums/residential-area';
+import {TypeOfHome} from '../../models/enums/type-of-home';
+import {PetOwnershipType} from '../../models/enums/pet-ownership-type';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {User} from '../../models/user';
+import {PetOwner} from '../../models/pet-owner';
 import {minSelectedCheckboxes} from '../../validators/min-selected-checkboxes.validators';
 import {Login} from '../../models/login';
 import {LoginService} from '../../services/login.service';
-import {UserService} from '../../services/user.service';
+import {PetOwnerService} from '../../services/pet-owner.service';
 import {NavbarService} from '../../services/navbar.service';
 import {Router} from '@angular/router';
+import {Pet} from '../../models/pet';
 
 
 @Component({
@@ -19,7 +20,7 @@ import {Router} from '@angular/router';
 })
 export class OwnerProfilFormComponent {
   login?: Login;
-  profile?: User;
+  profile?: PetOwner;
   @Output() createdProfile = new EventEmitter();
 
 
@@ -29,7 +30,7 @@ export class OwnerProfilFormComponent {
 
   profileForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private userService: UserService, private navbarService: NavbarService, private router: Router) {
+  constructor(private fb: FormBuilder, private loginService: LoginService, private petOwnerService: PetOwnerService, private navbarService: NavbarService, private router: Router) {
 
     this.profileForm = fb.group(
       { id: [],
@@ -47,7 +48,6 @@ export class OwnerProfilFormComponent {
         homeSize: ["", [Validators.required, Validators.min(1)]],
         hasGarden: ["", Validators.required],
         lookingFor: this.fb.array([], minSelectedCheckboxes(1)),
-        likedPets: [[]],
         matches: [[]]
       }
     );
@@ -73,7 +73,6 @@ export class OwnerProfilFormComponent {
           homeSize: this.profile.homeSize,
           hasGarden: this.profile.hasGarden.toString(),
           lookingFor: this.profile.lookingFor,
-          likedPets: this.profile.likedPets,
           matches: this.profile.matches
         };
         this.profileForm.patchValue(newValues);
@@ -109,7 +108,7 @@ export class OwnerProfilFormComponent {
   }
 
   submitProfile() {
-    let newProfile: User = this.profileForm.value;
+    let newProfile: PetOwner = this.profileForm.value;
     console.log(newProfile)
     if (this.profile){
       this.updateProfile(newProfile);
@@ -118,16 +117,16 @@ export class OwnerProfilFormComponent {
     this.createProfile(newProfile);
   }
 
-  updateProfile(profile: User) {
-    this.userService.modifyProfil(profile).subscribe(data => {
+  updateProfile(profile: PetOwner) {
+    this.petOwnerService.modifyProfil(profile).subscribe(data => {
       console.log("profile has been updated:")
       console.log(data);
       this.router.navigate(["/profile"])
     })
   }
 
-  createProfile(profile: User): void {
-    this.userService.createProfil(profile).subscribe(data => {
+  createProfile(profile: PetOwner): void {
+    this.petOwnerService.createProfil(profile).subscribe(data => {
       console.log("profile has been created:")
         console.log(data);
         this.profileCreated();

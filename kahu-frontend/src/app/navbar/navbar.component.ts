@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../models/user';
+import {PetOwner} from '../models/pet-owner';
 import {LoginService} from '../services/login.service';
 import {NavbarService} from '../services/navbar.service';
 import {Router} from '@angular/router';
@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  loggedInProfile?: User;
+  loggedInProfile?: PetOwner;
 
   constructor(private loginService: LoginService, private navbarService: NavbarService, private router: Router) {
   }

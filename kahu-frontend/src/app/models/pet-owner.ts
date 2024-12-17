@@ -1,10 +1,10 @@
 import {Pet} from './pet';
 import {Login} from './login';
-import {PetOwnershipType} from './pet-ownership-type';
-import {TypeOfHome} from './type-of-home';
-import {ResidentialArea} from './residential-area';
+import {PetOwnershipType} from './enums/pet-ownership-type';
+import {TypeOfHome} from './enums/type-of-home';
+import {ResidentialArea} from './enums/residential-area';
 
-export interface User {
+export interface PetOwner {
 
   id?: string;
   login: Login;
@@ -22,6 +22,5 @@ export interface User {
   hasGarden: boolean;
   /*livingSituationPicture: string[];*/
   lookingFor: PetOwnershipType[];
-  likedPets: Pet[];
   matches: Pet[];
 }
