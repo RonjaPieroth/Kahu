@@ -1,0 +1,65 @@
+<div class="container screen">
+  <button class="btn btn-light" routerLink="/profile" *ngIf="profile">
+    <i class="bi bi-arrow-left"></i>
+  </button>
+  <h2 class="text-center pb-4" *ngIf="profile">Modify your profile</h2>
+  <form [formGroup]="profileForm" (submit)="submitProfile()">
+    <p class="mb-3 fw-bold">Please answer some questions about your organisation</p>
+    <div class="mb-3">
+      <label for="name" class="form-label">What's the name of the shelter?</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+    </div>
+    <div class="row">
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="point-of-contact" class="form-label">If you have a point of contact please write her or his name
+          below: </label>
+        <input type="text" class="form-control" id="point-of-contact" formControlName="pointOfContact">
+      </div>
+
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="operatingHours" class="form-label">When are your hours of operation?</label>
+        <input type="text" class="form-control" id="operatingHours" formControlName="hoursOfOperation">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="website" class="form-label">If you have a website please insert the link below:</label>
+      <input type="text" class="form-control" id="website" formControlName="website">
+    </div>
+    <div class="mb-3">
+      <label for="e-mail" class="form-label">If you have a e-mail please insert the address below:</label>
+      <input type="text" class="form-control" id="e-mail" formControlName="mailAddress">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">What would you like future fosters to know about your
+        organisation?</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="profileText"></textarea>
+    </div>
+    <hr>
+    <div formGroupName="address">
+      <p class="mb-4 fw-bold">Please enter your address</p>
+      <div class="mb-3">
+        <label for="street" class="form-label">Street:</label>
+        <input type="text" class="form-control" id="street" formControlName="streetName">
+      </div>
+      <div class="mb-3">
+        <label for="house-number" class="form-label">house number:</label>
+        <input type="text" class="form-control" id="house-number" formControlName="houseNumber">
+      </div>
+      <div class="mb-3">
+        <label for="postal-code" class="form-label">post code:</label>
+        <input type="number" class="form-control" step="1" id="postal-code" formControlName="postalCode">
+      </div>
+      <div class="mb-3">
+        <label for="city" class="form-label">City:</label>
+        <input type="text" class="form-control" id="city" formControlName="city">
+      </div>
+      <div class="mb-3">
+        <label for="country" class="form-label">Country:</label>
+        <input type="text" class="form-control" id="country" formControlName="country">
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Submit</button>
+  </form>
+
+</div>

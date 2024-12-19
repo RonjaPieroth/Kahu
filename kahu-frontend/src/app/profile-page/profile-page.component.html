@@ -1,0 +1,6 @@
+<div *ngIf="isPetOwner; else shelter">
+  <app-profile-page-pet-owner></app-profile-page-pet-owner>
+</div>
+<ng-template #shelter>
+  <app-profile-page-shelter></app-profile-page-shelter>
+</ng-template>

@@ -1,0 +1,13 @@
+<div class="screen">
+  <h1 class="text-center mb-4">Create your profile</h1>
+  <div class="text-center">
+  <button (click)="shelter=true; petOwner=false" class="btn-primary btn me-4">I'm a shelter</button>
+  <button (click)="shelter=false; petOwner=true" class="btn-primary btn">I'm a future pet owner</button>
+  </div>
+  <div *ngIf="petOwner">
+    <app-owner-profil-form (createdProfile)="profileCreated()"></app-owner-profil-form>
+  </div>
+  <div *ngIf="shelter">
+    <app-shelter-form (createdProfile)="profileCreated()"></app-shelter-form>
+  </div>
+</div>
