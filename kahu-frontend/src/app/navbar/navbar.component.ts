@@ -48,4 +48,8 @@ logout():void{
     this.checkForProfile();
   }
 
+  get isPetOwner(): boolean{
+    return this.loginService.isPetOwner(this.loggedInProfile);
+  }
+
 }

@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StartPageComponent } from './before-login/start-page/start-page.component';
-import { ProfilePageComponent } from './future-pet-owner-profile/profile-page/profile-page.component';
-import { PetFormComponent } from './shelter-profile/pet-form/pet-form.component';
+import { ProfilePagePetOwnerComponent } from './future-pet-owner-profile/profile-page-pet-owner/profile-page-pet-owner.component';
+import { PetFormComponent } from './shelter-profile/pets/pet-form/pet-form.component';
 import { MailBoxComponent } from './shelter-profile/mail-box/mail-box.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -22,12 +22,16 @@ import { DashboardComponent } from './future-pet-owner-profile/dashboard/dashboa
 import { MatchesComponent } from './future-pet-owner-profile/matches/matches.component';
 import { SwipePageComponent } from './future-pet-owner-profile/swipe-page/swipe-page.component';
 import { NotificationsComponent } from './future-pet-owner-profile/notifications/notifications.component';
+import { ShelterFormComponent } from './shelter-profile/shelter-form/shelter-form.component';
+import { CreateProfileComponent } from './create-profile/create-profile.component';
+import {ProfilePageComponent} from './profile-page/profile-page.component';
+import { PetOverviewComponent } from './shelter-profile/pets/pet-overview/pet-overview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartPageComponent,
-    ProfilePageComponent,
+    ProfilePagePetOwnerComponent,
     PetFormComponent,
     MailBoxComponent,
     NavbarComponent,
@@ -41,7 +45,11 @@ import { NotificationsComponent } from './future-pet-owner-profile/notifications
     DashboardComponent,
     MatchesComponent,
     SwipePageComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ShelterFormComponent,
+    CreateProfileComponent,
+    ProfilePageComponent,
+    PetOverviewComponent
   ],
   imports: [
     BrowserModule,

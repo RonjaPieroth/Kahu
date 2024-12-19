@@ -9,8 +9,9 @@
   <div class="collapse navbar-collapse d-lg-flex justify-content-around" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-link active" aria-current="page" href="#">🏠 Home</a>
-      <a class="nav-link" href="/swipe">🔎 Browse</a>
-      <a class="nav-link" href="/matches">⭐ Saved</a>
+      <a class="nav-link" href="/swipe" *ngIf="isPetOwner">🔎 Browse</a>
+      <a class="nav-link" href="/matches" *ngIf="isPetOwner">⭐ Saved</a>
+      <a class="nav-link" href="/pets" *ngIf="!isPetOwner">🐱 Pets</a>
       <a class="nav-link" href="/notifications">🔔 Notifications</a>
       <a class="nav-link" href="/mailbox">💬 Mailbox</a>
       <a class="nav-link" href="/profile">👤 Profile</a>

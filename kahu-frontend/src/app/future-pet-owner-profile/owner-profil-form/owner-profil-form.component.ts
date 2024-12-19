@@ -10,7 +10,6 @@ import {LoginService} from '../../services/login.service';
 import {PetOwnerService} from '../../services/pet-owner.service';
 import {NavbarService} from '../../services/navbar.service';
 import {Router} from '@angular/router';
-import {Pet} from '../../models/pet';
 
 
 @Component({

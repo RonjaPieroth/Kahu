@@ -4,11 +4,11 @@ import {LoginService} from '../../services/login.service';
 import {PetOwnershipType} from '../../models/enums/pet-ownership-type';
 
 @Component({
-  selector: 'app-profile-page',
-  templateUrl: './profile-page.component.html',
-  styleUrl: './profile-page.component.css'
+  selector: 'app-profile-page-pet-owner',
+  templateUrl: './profile-page-pet-owner.component.html',
+  styleUrl: './profile-page-pet-owner.component.css'
 })
-export class ProfilePageComponent {
+export class ProfilePagePetOwnerComponent {
 
   profile?: PetOwner;
 

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {PetOwner} from '../../models/pet-owner';
 import {LoginService} from '../../services/login.service';
 import {Shelter} from '../../models/shelter';
+
+
 
 @Component({
   selector: 'app-profile-page-shelter',
@@ -29,4 +30,6 @@ export class ProfilePageShelterComponent {
   get loggedIn(): boolean {
     return this.loginService.getToken() != "";
   }
+
+  protected readonly console = console;
 }
