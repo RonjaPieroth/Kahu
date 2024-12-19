@@ -56,7 +56,7 @@ export class OwnerProfilFormComponent {
   ngOnInit() {
     this.loginService.getProfile().subscribe(data => {
       this.login = data;
-      if (data.profile) {
+      if (data.profile && this.loginService.isPetOwner(data.profile)) {
         this.profile = data.profile;
         const newValues = {
           id: this.profile.id,

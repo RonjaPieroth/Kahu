@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {PetOwner} from '../../models/pet-owner';
 import {LoginService} from '../../services/login.service';
+import {Shelter} from '../../models/shelter';
 
 @Component({
   selector: 'app-start-page',
@@ -9,7 +10,7 @@ import {LoginService} from '../../services/login.service';
 })
 export class StartPageComponent {
 
-  loggedInProfile?: PetOwner;
+  loggedInProfile?: PetOwner|Shelter;
 
   constructor(private loginService: LoginService) {
   }

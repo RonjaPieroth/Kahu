@@ -3,6 +3,7 @@ import {Login} from '../models/login';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {LoginResponse} from '../models/login-response';
+import {PetOwner} from '../models/pet-owner';
 
 @Injectable({
   providedIn: 'root'
@@ -52,4 +53,8 @@ export class LoginService {
     }
   });
 }
+
+ isPetOwner(obj: any): obj is PetOwner {
+    return obj && typeof obj.name === 'string' && typeof obj.age === 'number';
+  }
 }

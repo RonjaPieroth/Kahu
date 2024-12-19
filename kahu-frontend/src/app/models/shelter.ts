@@ -1,9 +1,12 @@
 import {Pet} from './pet';
 import {Address} from './address';
+import {Login} from './login';
 
 export interface Shelter {
   id?: number;
   name: string;
+  profileText?: string
+  login: Login;
   pointOfContact?: string;
   address: Address;
   website?: string;

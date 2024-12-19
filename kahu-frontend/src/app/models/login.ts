@@ -5,5 +5,5 @@ export interface Login {
   id?: number;
   mail: string;
   password: string;
-  profile?: PetOwner;
+  profile?: PetOwner | Shelter;
 }

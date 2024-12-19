@@ -1,1 +1,59 @@
-<p>profile-page-shelter works!</p>
+<div class="container screen" *ngIf="profile">
+  <div class="d-flex justify-content-end">
+    <i class="bi bi-gear" routerLink="/profile-form"></i>
+  </div>
+  <div class="row mt-2 gap-5 mb-4">
+    <div class=" col-12 col-sm-6 mt-sm-4">
+      <div class="card-body">
+        <h2 class="card-title mb-4">{{ profile.name }}</h2>
+        <h5 class="card-subtitle mb-2 text-body-secondary"
+            *ngIf="profile.pointOfContact">{{ profile.pointOfContact }}</h5>
+        <p class="card-text mb-4">{{ profile.profileText }}</p>
+      </div>
+      <a [routerLink]="['/mailbox', profile.id]" class="btn btn-primary">Send Message</a>
+    </div>
+  </div>
+
+
+  <div class="row gap-3 mb-5 me-1 ms-1">
+    <div class="card col-12 col-sm">
+      <div class="card-body" *ngIf="profile.mailAddress || profile.website">
+        <h5 class="card-title">Contact Details</h5>
+        <p *ngIf="profile.hoursOfOperation">operation hours: {{ profile.hoursOfOperation }}</p>
+        <p *ngIf="profile.website">website: {{ profile.website }}</p>
+        <p *ngIf="profile.mailAddress">e-mail: {{ profile.mailAddress }}</p>
+      </div>
+    </div>
+    <div class="card col-12 col-sm">
+      <div class="card-body">
+        <h5 class="card-title mb-3">Address</h5>
+        <p *ngIf="profile.hoursOfOperation">operation hours: {{ profile.hoursOfOperation }}</p>
+        <p>{{ profile.address.streetName }} {{ profile.address.houseNumber }}</p>
+        <p>{{ profile.address.city }}, {{ profile.address.postalCode }}</p>
+        <p>{{ profile.address.country }}</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active" *ngFor="let pet of profile.pets">
+        <img src="{{pet.pictures[0]}}" class="d-block w-100" alt="{{pet.name}}">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ pet.name }}</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+

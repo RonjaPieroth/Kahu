@@ -3,6 +3,7 @@ import {PetOwner} from '../models/pet-owner';
 import {LoginService} from '../services/login.service';
 import {NavbarService} from '../services/navbar.service';
 import {Router} from '@angular/router';
+import {Shelter} from '../models/shelter';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  loggedInProfile?: PetOwner;
+  loggedInProfile?: PetOwner|Shelter;
 
   constructor(private loginService: LoginService, private navbarService: NavbarService, private router: Router) {
   }

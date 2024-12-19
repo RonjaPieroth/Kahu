@@ -19,7 +19,7 @@ export class ProfilePageComponent {
   checkForProfile(): void{
     if (this.loggedIn) {
       this.loginService.getProfile().subscribe(data => {
-        if (data.profile) {
+        if (data.profile && this.loginService.isPetOwner(data.profile)) {
           this.profile = data.profile
         }
       });
