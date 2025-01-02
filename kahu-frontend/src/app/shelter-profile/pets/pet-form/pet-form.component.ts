@@ -43,7 +43,9 @@ export class PetFormComponent {
       }
     );
     if(petID){
-      this.petService.getPetByID(petID).subscribe(data => this.petProfile = data);
+      this.petService.getPetByID(petID).subscribe(data => {
+        this.petProfile = data; this.fillInForm();
+      });
     }
 
   }
@@ -52,37 +54,43 @@ export class PetFormComponent {
     this.loginService.getProfile().subscribe(data => {
       if (data.profile && !this.loginService.isPetOwner(data.profile)) {
         this.shelterProfile = data.profile;
-        if (this.petProfile) {
-          const newValues = {
-            id: this.petProfile.id,
-            name: this.petProfile.name,
-            animalType: this.petProfile.animalType,
-            age: this.petProfile.age,
-            gender: this.petProfile.gender,
-            neutered: this.petProfile.neutered,
-            healthStatus: this.petProfile.healthStatus,
-            profileText: this.petProfile.profileText,
-            requirements: this.petProfile.requirements,
-            adoptionFee: this.petProfile.adoptionFee,
-            lookingFor: this.petProfile.lookingFor,
-            shelter: this.petProfile.shelter,
-            matches: this.petProfile.matches
-          };
-          this.profileForm.patchValue(newValues);
-          const lookingForArray = this.profileForm.get('lookingFor') as FormArray;
-          lookingForArray.clear();
-          newValues.lookingFor.forEach(value => {
-            lookingForArray.push(this.fb.control(value));
-          });
-          this.petProfile.pictures.forEach((picture: string) => {
-            this.picturesArray.push(this.fb.control(picture, Validators.required));
-          });
-
-        } else {
+        if (!this.petProfile) {
           this.profileForm.patchValue({shelter: {id: this.shelterProfile.id}});
         }
       }
     });
+  }
+
+  ngOnChanges(){
+    this.fillInForm();
+  }
+
+  fillInForm(): void{
+    if (this.petProfile){
+    const newValues = {
+      id: this.petProfile.id,
+      name: this.petProfile.name,
+      animalType: this.petProfile.animalType,
+      age: this.petProfile.age,
+      gender: this.petProfile.gender,
+      neutered: this.petProfile.neutered,
+      healthStatus: this.petProfile.healthStatus,
+      profileText: this.petProfile.profileText,
+      requirements: this.petProfile.requirements,
+      adoptionFee: this.petProfile.adoptionFee,
+      lookingFor: this.petProfile.lookingFor,
+      shelter: this.petProfile.shelter,
+      matches: this.petProfile.matches
+    };
+    this.profileForm.patchValue(newValues);
+    const lookingForArray = this.profileForm.get('lookingFor') as FormArray;
+    lookingForArray.clear();
+    newValues.lookingFor.forEach(value => {
+      lookingForArray.push(this.fb.control(value));
+    });
+    this.petProfile.pictures.forEach((picture: string) => {
+      this.picturesArray.push(this.fb.control(picture, Validators.required));
+    });}
   }
 
   get picturesArray(): FormArray {
@@ -133,16 +141,15 @@ export class PetFormComponent {
     })
   }
 
+  deleteProfile(): void{
+    if (this.petProfile?.id){
+    this.petService.deletePet(this.petProfile.id).subscribe(()=> this.router.navigate(["/pets"]))}
+  }
+
   createProfile(profile: Pet): void {
-    this.shelterProfile?.pets.push(profile);
-    if (this.shelterProfile) {
-      this.shelterService.modifyProfil(this.shelterProfile).subscribe(data => {
-        this.petService.createProfil(profile).subscribe(data => {
-          console.log("profile has been created:")
-          console.log(data);
-          this.router.navigate(["/pets"])
-        })
-      })
-    }
+    this.petService.createProfil(profile).subscribe(data => {
+      console.log(data);
+      this.router.navigate(["/pets"])
+    })
   }
 }

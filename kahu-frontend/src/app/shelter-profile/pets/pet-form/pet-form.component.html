@@ -1,7 +1,13 @@
 <div class="container screen">
-  <button class="btn btn-light" [routerLink]="['/profile/pet', petProfile.id]" *ngIf="petProfile">
-    <i class="bi bi-arrow-left"></i>
+  <div class="d-flex justify-content-between" *ngIf="petProfile">
+  <button class="btn btn-light" [routerLink]="['/profile/pet', petProfile.id]">
+    <i class="bi bi-arrow-left" ></i>
   </button>
+
+    <button class="btn btn-danger" (click)="deleteProfile()">
+      <i class="bi bi-trash ms-2"></i>
+    </button>
+  </div>
   <h2 class="text-center pb-4" *ngIf="petProfile">Modify {{petProfile.name}}'s profile</h2>
   <h2 class="text-center pb-4" *ngIf="!petProfile">Create pet profile</h2>
   <form [formGroup]="profileForm" (submit)="submitProfile()">
