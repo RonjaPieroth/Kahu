@@ -94,6 +94,10 @@ export class ShelterFormComponent {
   }
 
   createProfile(profile: Shelter): void {
+    if (!profile.login) {
+      console.error("No login associated with shelter!");
+      return;
+    }
     this.shelterService.createProfil(profile).subscribe(data => {
         console.log("profile has been created:")
         console.log(data);

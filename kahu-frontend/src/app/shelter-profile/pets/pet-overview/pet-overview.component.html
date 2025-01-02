@@ -1,1 +1,16 @@
-<p>pet-overview works!</p>
+<div class="screen container">
+  <h1 class="text-center">Pets for adoption</h1>
+  <div class="text-center d-flex justify-content-center mb-3">
+    <p class="me-1">Total: {{ pets.length }} animals</p>
+    <i class="bi bi-plus" routerLink="/pet/new"></i>
+  </div>
+  <div class="row gap-4 justify-content-evenly">
+  <div class="card col" style="max-width: 18rem;" *ngFor="let pet of pets">
+    <img src="{{pet.pictures[0]}}" class="card-img-top p-2 card-img" alt="{{pet.name}}">
+    <div class="card-body">
+      <h5 class="card-title">{{ pet.name }}</h5>
+      <a href="#" class="btn btn-primary">go to profile</a>
+    </div>
+  </div>
+</div>
+</div>

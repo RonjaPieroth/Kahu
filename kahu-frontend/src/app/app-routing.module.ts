@@ -3,7 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {StartPageComponent} from './before-login/start-page/start-page.component';
 import {LoginFormComponent} from './before-login/login-form/login-form.component';
 import {SignupFormComponent} from './before-login/signup-form/signup-form.component';
-import {ProfilePagePetOwnerComponent} from './future-pet-owner-profile/profile-page-pet-owner/profile-page-pet-owner.component';
 import {SwipePageComponent} from './future-pet-owner-profile/swipe-page/swipe-page.component';
 import {MatchesComponent} from './future-pet-owner-profile/matches/matches.component';
 import {PetOwnerMailboxComponent} from './future-pet-owner-profile/pet-owner-mailbox/pet-owner-mailbox.component';
@@ -11,6 +10,8 @@ import {NotificationsComponent} from './future-pet-owner-profile/notifications/n
 import {OwnerProfilFormComponent} from './future-pet-owner-profile/owner-profil-form/owner-profil-form.component';
 import {ProfilePageComponent} from './profile-page/profile-page.component';
 import {ShelterFormComponent} from './shelter-profile/shelter-form/shelter-form.component';
+import {PetOverviewComponent} from './shelter-profile/pets/pet-overview/pet-overview.component';
+import {PetFormComponent} from './shelter-profile/pets/pet-form/pet-form.component';
 
 const routes: Routes = [
   {path: "", component: StartPageComponent},
@@ -23,7 +24,9 @@ const routes: Routes = [
   {path: "mailbox/:id", component: PetOwnerMailboxComponent},
   {path: "notifications", component: NotificationsComponent},
   {path: "owner-profile-form", component: OwnerProfilFormComponent},
-  {path: "shelter-profile-form", component: ShelterFormComponent}
+  {path: "shelter-profile-form", component: ShelterFormComponent},
+  {path: "pets", component: PetOverviewComponent},
+  {path: "pet/new", component: PetFormComponent}
 ];
 
 @NgModule({

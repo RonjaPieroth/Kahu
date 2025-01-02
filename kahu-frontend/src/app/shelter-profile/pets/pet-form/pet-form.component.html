@@ -1,1 +1,104 @@
-<p>pet-form works!</p>
+<div class="container screen">
+  <button class="btn btn-light" routerLink="/profile" *ngIf="petProfile">
+    <i class="bi bi-arrow-left"></i>
+  </button>
+  <h2 class="text-center pb-4" *ngIf="petProfile">Modify {{petProfile.name}}'s profile</h2>
+  <h2 class="text-center pb-4" *ngIf="!petProfile">Create pet profile</h2>
+  <form [formGroup]="profileForm" (submit)="submitProfile()">
+    <div class="mb-3 mt-3">
+      <p>What kind of animal is this pet?</p>
+      <select class="form-select" aria-label="Default select example" formControlName="animalType">
+        <option selected value="">Choose an option</option>
+        <option *ngFor="let animalType of animalTypeArray" [value]="animalType">{{ animalType }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">What's the pet's name?</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+    </div>
+    <div class="row">
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="age" class="form-label">Please tell us the pet's age in months?</label>
+        <input type="number" class="form-control" id="age" step="1" formControlName="age">
+      </div>
+
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="adoption-fee" class="form-label">How much is the adoption fee</label>
+        <input type="number" class="form-control" id="adoption-fee" formControlName="adoptionFee">
+      </div>
+    </div>
+    <div class="row">
+    <div class="mb-3 col-12 col-sm">
+      <p>Is the pet male or female?</p>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="gender-female" value="Female"
+               formControlName="gender">
+        <label class="form-check-label" for="gender-female">
+          Female
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="gender-male" value="Male"
+               formControlName="gender">
+        <label class="form-check-label" for="gender-male">
+          Male
+        </label>
+      </div>
+    </div>
+    <div class="mb-3 col-12 col-sm">
+      <p>Has the pet already been neutered?</p>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="isNeutered" id="NeuteredYes" value="true"
+               formControlName="isNeutered">
+        <label class="form-check-label" for="NeuteredYes">
+          Yes
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="isNeutered" id="NeuteredNo" value="false"
+               formControlName="isNeutered">
+        <label class="form-check-label" for="NeuteredNo">
+          No
+        </label>
+      </div>
+    </div>
+    </div>
+
+    <div class="mb-3">
+      <p>Please upload some pictures of the pet</p>
+      <div formArrayName="pictures">
+        <div *ngFor="let picture of picturesArray.controls; let i = index">
+          <input type="text" [formControlName]="i" placeholder="Enter picture URL" class="form-control">
+          <button type="button" (click)="removePicture(i)">Remove</button>
+        </div>
+        <button type="button" (click)="addPicture()">Add Picture</button>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="profile-text" class="form-label">How would you describe the pet?</label>
+      <textarea class="form-control" id="profile-text" rows="3" formControlName="profileText"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="health-status" class="form-label">How is the pet's health status?</label>
+      <textarea class="form-control" id="health-status" rows="3" formControlName="healthStatus"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="requirements" class="form-label">What requirements should a future pet owner fulfill to adopt this
+        pet?</label>
+      <textarea class="form-control" id="requirements" rows="3" formControlName="requirements"></textarea>
+    </div>
+    <div class="mb-4">
+      <p>Please select what kind of adoption you are lookíng for. Multiple answers are possible.</p>
+      <div class="form-check form-check-inline" *ngFor="let ownershipType of ownerShipTypeArray">
+        <input class="form-check-input" type="checkbox" [value]="ownershipType" id="{{ownershipType}}"
+               [checked]="lookingForArray.includes(ownershipType)" (change)="onCheckboxChange($event)">
+        <label class="form-check-label" for="{{ownershipType}}">
+          {{ ownershipType }}
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Submit</button>
+  </form>
+
+
+</div>

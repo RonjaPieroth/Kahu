@@ -14,7 +14,7 @@ export interface Pet {
   profileText: string;
   requirements: string;
   adoptionFee: number;
-  lookingFor: PetOwnershipType;
+  lookingFor: PetOwnershipType[];
   pictures: string[];
   shelter: Shelter;
   matches: PetOwner[];

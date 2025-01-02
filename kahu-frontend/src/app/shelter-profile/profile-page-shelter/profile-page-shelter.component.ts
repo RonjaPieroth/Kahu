@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import {Shelter} from '../../models/shelter';
+import {PetService} from '../../services/pet.service';
 
 
 

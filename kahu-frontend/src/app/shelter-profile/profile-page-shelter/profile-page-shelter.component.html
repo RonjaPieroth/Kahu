@@ -32,18 +32,17 @@
     </div>
   </div>
 
-<div  *ngIf="profile.pets.length > 0">
-  <div id="carouselExampleCaptions" class="carousel slide">
+<div  *ngIf="profile.pets.length > 0" class="d-flex justify-content-center align-items-center">
+  <div id="carouselExampleCaptions" class="carousel slide" style=" max-width: 24rem">
     <div class="carousel-inner">
-      <div class="carousel-item active" *ngFor="let pet of profile.pets">
-        <img src="{{pet.pictures[0]}}" class="d-block w-100" alt="{{pet.name}}">
+      <div class="carousel-item" *ngFor="let pet of profile.pets; let i = index" [class.active]="i ===0" >
+        <img src="{{pet.pictures[0]}}" class="d-block w-100 card-img" alt="{{pet.name}}">
         <div class="carousel-caption d-none d-md-block">
           <h5>{{ pet.name }}</h5>
-          <p>Some representative placeholder content for the first slide.</p>
         </div>
       </div>
     </div>
-  </div>
+
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
@@ -52,6 +51,7 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+  </div>
 </div>
 </div>
 
