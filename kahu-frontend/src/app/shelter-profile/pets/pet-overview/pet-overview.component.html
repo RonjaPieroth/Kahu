@@ -9,7 +9,7 @@
     <img src="{{pet.pictures[0]}}" class="card-img-top p-2 card-img" alt="{{pet.name}}">
     <div class="card-body">
       <h5 class="card-title">{{ pet.name }}</h5>
-      <a href="#" class="btn btn-primary">go to profile</a>
+      <a [routerLink]="['/profile/pet', pet.id]" class="btn btn-primary">go to profile</a>
     </div>
   </div>
 </div>

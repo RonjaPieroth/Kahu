@@ -38,7 +38,7 @@
       <div class="carousel-item" *ngFor="let pet of profile.pets; let i = index" [class.active]="i ===0" >
         <img src="{{pet.pictures[0]}}" class="d-block w-100 card-img" alt="{{pet.name}}">
         <div class="carousel-caption d-none d-md-block">
-          <h5>{{ pet.name }}</h5>
+          <h5 class="cursor" [routerLink]="['/profile/pet', pet.id]">{{ pet.name }}</h5>
         </div>
       </div>
     </div>

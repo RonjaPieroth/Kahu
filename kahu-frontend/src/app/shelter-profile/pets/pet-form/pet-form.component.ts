@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {PetOwnershipType} from '../../../models/enums/pet-ownership-type';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../../services/login.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {minSelectedCheckboxes} from '../../../validators/min-selected-checkboxes.validators';
 import {Shelter} from '../../../models/shelter';
 import {Pet} from '../../../models/pet';
@@ -22,8 +22,8 @@ export class PetFormComponent {
   animalTypeArray = Object.values(AnimalType);
   profileForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private petService: PetService, private shelterService: ShelterService, private router: Router) {
-
+  constructor(private fb: FormBuilder, private loginService: LoginService, private petService: PetService, private shelterService: ShelterService, private router: Router, private route: ActivatedRoute) {
+    const petID = route.snapshot.paramMap.get("id");
     this.profileForm = fb.group(
       {
         id: [],
@@ -31,7 +31,7 @@ export class PetFormComponent {
         animalType: ["", Validators.required],
         age: ["", Validators.required],
         gender: ["", Validators.required],
-        isNeutered: [Validators.required],
+        neutered: ["",Validators.required],
         healthStatus: ["", Validators.required],
         profileText: ["", Validators.required],
         requirements: ["", Validators.required],
@@ -42,6 +42,10 @@ export class PetFormComponent {
         matches: [[]]
       }
     );
+    if(petID){
+      this.petService.getPetByID(petID).subscribe(data => this.petProfile = data);
+    }
+
   }
 
   ngOnInit() {
@@ -55,13 +59,12 @@ export class PetFormComponent {
             animalType: this.petProfile.animalType,
             age: this.petProfile.age,
             gender: this.petProfile.gender,
-            isNeutered: this.petProfile.isNeutered,
+            neutered: this.petProfile.neutered,
             healthStatus: this.petProfile.healthStatus,
             profileText: this.petProfile.profileText,
             requirements: this.petProfile.requirements,
             adoptionFee: this.petProfile.adoptionFee,
             lookingFor: this.petProfile.lookingFor,
-            pictures: this.petProfile.pictures,
             shelter: this.petProfile.shelter,
             matches: this.petProfile.matches
           };
@@ -70,6 +73,9 @@ export class PetFormComponent {
           lookingForArray.clear();
           newValues.lookingFor.forEach(value => {
             lookingForArray.push(this.fb.control(value));
+          });
+          this.petProfile.pictures.forEach((picture: string) => {
+            this.picturesArray.push(this.fb.control(picture, Validators.required));
           });
 
         } else {
@@ -123,7 +129,7 @@ export class PetFormComponent {
     this.petService.modifyProfil(profile).subscribe(data => {
       console.log("profile has been updated:")
       console.log(data);
-      this.router.navigate(["/profile"])
+      this.router.navigate([`/profile/pet/${this.petProfile?.id}`])
     })
   }
 
@@ -132,10 +138,10 @@ export class PetFormComponent {
     if (this.shelterProfile) {
       this.shelterService.modifyProfil(this.shelterProfile).subscribe(data => {
         this.petService.createProfil(profile).subscribe(data => {
-            console.log("profile has been created:")
-            console.log(data);
-            this.router.navigate(["/pets"])
-          })
+          console.log("profile has been created:")
+          console.log(data);
+          this.router.navigate(["/pets"])
+        })
       })
     }
   }

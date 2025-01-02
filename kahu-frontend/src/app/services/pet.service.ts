@@ -27,6 +27,13 @@ export class PetService {url: string = "http://localhost:8080/pets"
     })
   }
 
+  getPetByID(id: string): Observable<Pet>{
+  return this.http.get<Pet>(this.url +"/" +id, {
+    headers: {
+      authorization: `Bearer ${this.loginService.getToken()}`
+    }})
+  }
+
   deletePet(id: Number): Observable<void>{
   return this.http.delete<void>(this.url + "/" + id, {
     headers: {

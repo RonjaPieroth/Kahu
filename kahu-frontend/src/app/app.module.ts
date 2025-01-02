@@ -26,6 +26,7 @@ import { ShelterFormComponent } from './shelter-profile/shelter-form/shelter-for
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import {ProfilePageComponent} from './profile-page/profile-page.component';
 import { PetOverviewComponent } from './shelter-profile/pets/pet-overview/pet-overview.component';
+import { PetProfileComponent } from './shelter-profile/pets/pet-profile/pet-profile.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { PetOverviewComponent } from './shelter-profile/pets/pet-overview/pet-ov
     ShelterFormComponent,
     CreateProfileComponent,
     ProfilePageComponent,
-    PetOverviewComponent
+    PetOverviewComponent,
+    PetProfileComponent
   ],
   imports: [
     BrowserModule,

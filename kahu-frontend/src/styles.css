@@ -41,7 +41,10 @@ div.card{
   flex: 1;
   padding-top: 80px;
   padding-bottom: 80px;
+}
 
+.cursor{
+  cursor: pointer;
 }
 
 

@@ -1,0 +1,9 @@
+
+
+.img-zoom {
+  transition: transform 0.3s ease; /* Weicher Übergang */
+}
+
+.img-zoom:hover {
+  transform: scale(1.2); /* Bild vergrößern */
+}

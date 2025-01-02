@@ -1,0 +1,52 @@
+<div class="container screen" *ngIf="pet">
+  <div class="d-flex justify-content-end">
+    <i class="bi bi-gear cursor" [routerLink]="['/pet/modify', pet.id]"></i>
+  </div>
+  <div class="row mt-2 gap-5 mb-4">
+    <div class=" col-12 col-sm-4">
+      <img src="{{pet.pictures[0]}}" class="img-fluid rounded-circle p-4 p-sm-5">
+    </div>
+    <div class=" col-12 col-sm mt-sm-4">
+      <div class="card-body">
+        <h2 class="card-title mb-4">{{ pet.name }} <i
+          [ngClass]="pet.gender === 'Male'? 'bi bi-gender-male': 'bi bi-gender-female'"></i></h2>
+        <h5 class="card-subtitle mb-2 text-body-secondary">Shelter: {{ pet.shelter.name }}</h5>
+        <p class="card-text">age: {{ pet.age }} months</p>
+        <figure class="figure" *ngIf="pet.lookingFor.includes(PetOwnershipType.ADOPTION)">
+          <img src="icons-pet-heart.png" class="figure-img img-fluid rounded me-5" alt="forever">
+          <figcaption class="figure-caption text-center me-5">Forever home</figcaption>
+        </figure>
+        <figure class="figure" *ngIf="pet.lookingFor.includes(PetOwnershipType.FOSTER)">
+          <img src="icon shelter.png" class="figure-img img-fluid rounded" alt="foster">
+          <figcaption class="figure-caption text-center">Foster home</figcaption>
+        </figure>
+        <p class="card-text mb-4">{{ pet.profileText }}</p>
+      </div>
+      <a [routerLink]="['/mailbox', pet.shelter.id]" class="btn btn-primary">Send Message</a>
+    </div>
+  </div>
+
+  <div class="row gap-3 mb-5 me-1 ms-1">
+    <div class="card col-12 col-sm">
+      <div class="card-body">
+        <h5 class="card-title mb-3">Health Status</h5>
+        <p>neutered: {{ pet.neutered ? 'yes' : 'no' }}</p>
+        <p class="card-text">{{ pet.healthStatus }}</p>
+      </div>
+    </div>
+
+    <div class="card col-12 col-sm">
+      <div class="card-body">
+        <h5 class="card-title mb-3">Adoption Requirements</h5>
+        <p>Adoption Fee: {{ pet.adoptionFee }} €</p>
+        <p class="card-text">{{ pet.requirements }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-sm-4 mb-2" *ngFor="let picture of pet.pictures">
+      <img src="{{picture}}" class="img-fluid rounded shadow img-uniform img-zoom">
+    </div>
+  </div>
+</div>

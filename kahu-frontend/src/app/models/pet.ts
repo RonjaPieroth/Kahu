@@ -9,7 +9,7 @@ export interface Pet {
   animalType: AnimalType;
   age: number; //in months
   gender: 'Male' | 'Female';
-  isNeutered: boolean;
+  neutered: boolean;
   healthStatus: string;
   profileText: string;
   requirements: string;

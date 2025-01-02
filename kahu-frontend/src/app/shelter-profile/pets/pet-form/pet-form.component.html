@@ -1,5 +1,5 @@
 <div class="container screen">
-  <button class="btn btn-light" routerLink="/profile" *ngIf="petProfile">
+  <button class="btn btn-light" [routerLink]="['/profile/pet', petProfile.id]" *ngIf="petProfile">
     <i class="bi bi-arrow-left"></i>
   </button>
   <h2 class="text-center pb-4" *ngIf="petProfile">Modify {{petProfile.name}}'s profile</h2>
@@ -48,15 +48,15 @@
     <div class="mb-3 col-12 col-sm">
       <p>Has the pet already been neutered?</p>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="isNeutered" id="NeuteredYes" value="true"
-               formControlName="isNeutered">
+        <input class="form-check-input" type="radio" name="neutered" id="NeuteredYes" [value]="true"
+               formControlName="neutered">
         <label class="form-check-label" for="NeuteredYes">
           Yes
         </label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="isNeutered" id="NeuteredNo" value="false"
-               formControlName="isNeutered">
+        <input class="form-check-input" type="radio" name="neutered" id="NeuteredNo" [value]="false"
+               formControlName="neutered">
         <label class="form-check-label" for="NeuteredNo">
           No
         </label>
