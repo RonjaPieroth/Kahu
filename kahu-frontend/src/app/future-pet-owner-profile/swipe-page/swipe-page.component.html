@@ -1,1 +1,6 @@
-<p>swipe-page works!</p>
+<div class="container screen" *ngIf="pets">
+  <ng-container *ngIf=" pets.length < 1">
+    <p>There are no more pets to swipe. Check in later or change your filter.</p>
+  </ng-container>
+  <app-match-element [pet]="pet" (matchEvent)="isMatch()" (noMatchEvent)="isNoMatch()" *ngIf="pets.length > 0 && pet"></app-match-element>
+</div>

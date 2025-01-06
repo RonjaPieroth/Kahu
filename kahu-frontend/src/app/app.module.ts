@@ -27,6 +27,7 @@ import { CreateProfileComponent } from './create-profile/create-profile.componen
 import {ProfilePageComponent} from './profile-page/profile-page.component';
 import { PetOverviewComponent } from './shelter-profile/pets/pet-overview/pet-overview.component';
 import { PetProfileComponent } from './shelter-profile/pets/pet-profile/pet-profile.component';
+import { MatchElementComponent } from './future-pet-owner-profile/swipe-page/match-element/match-element.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { PetProfileComponent } from './shelter-profile/pets/pet-profile/pet-prof
     CreateProfileComponent,
     ProfilePageComponent,
     PetOverviewComponent,
-    PetProfileComponent
+    PetProfileComponent,
+    MatchElementComponent
   ],
   imports: [
     BrowserModule,

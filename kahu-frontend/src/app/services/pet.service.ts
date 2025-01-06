@@ -27,6 +27,13 @@ export class PetService {url: string = "http://localhost:8080/pets"
     })
   }
 
+  getAllPets(): Observable<Pet[]>{
+  return this.http.get<Pet[]>(this.url, {
+    headers: {
+      authorization: `Bearer ${this.loginService.getToken()}`
+    }})
+  }
+
   getPetByID(id: string): Observable<Pet>{
   return this.http.get<Pet>(this.url +"/" +id, {
     headers: {
