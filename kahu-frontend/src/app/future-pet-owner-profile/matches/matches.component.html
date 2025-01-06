@@ -1,1 +1,14 @@
-
+<div class="container screen">
+<div class="row justify-content-around mt-5">
+<div class="card col-12 col-sm-4 col-md-2 mb-5" style="width: 18rem;" *ngFor="let match of matches">
+ <div class="d-flex justify-content-end">
+    <i class="bi bi-x-circle" style="color: red;" (click)="removeMatch(match)"></i>
+ </div>
+  <img src="{{match.pictures[0]}}" class="card-img-top" alt="{{match.name}}">
+  <div class="card-body">
+    <h5 class="card-title">{{ match.name }}</h5>
+    <a href="#" class="btn btn-primary">Profile</a>
+  </div>
+</div>
+</div>
+</div>

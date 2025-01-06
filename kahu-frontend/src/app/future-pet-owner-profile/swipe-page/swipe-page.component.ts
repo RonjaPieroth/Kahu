@@ -13,9 +13,9 @@ import {PetOwnerService} from '../../services/pet-owner.service';
 export class SwipePageComponent {
 
   pet?: Pet;
-  allPets?: Pet[];
+  allPets: Pet[] = [];
   profile?: PetOwner;
-  pets?: Pet[];
+  pets: Pet[] = [];
 
   constructor(private petService: PetService, private loginService: LoginService, private petOwnerService: PetOwnerService) {
     loginService.getProfile().subscribe(data => {
@@ -24,15 +24,18 @@ export class SwipePageComponent {
       }
       petService.getAllPets().subscribe(data => {this.allPets = data; this.chooseRandomPet();});
     })
+  }
 
+  loadMatchablePets(): Pet[]{
+    return this.allPets.filter(
+      pet => !this.profile?.matches.some(match => match.id === pet.id)
+    );
   }
 
   chooseRandomPet(): void {
-    let pets = this.allPets;
-    pets = pets!.filter(pet => !this.profile?.matches.includes(pet));
-    this.pets = pets;
-    const randomIndex = Math.floor(Math.random() * pets.length);
-    this.pet = pets[randomIndex];
+    this.pets = this.loadMatchablePets();
+    const randomIndex = Math.floor(Math.random() * this.pets.length);
+    this.pet = this.pets[randomIndex];
   }
 
   isMatch():void{
