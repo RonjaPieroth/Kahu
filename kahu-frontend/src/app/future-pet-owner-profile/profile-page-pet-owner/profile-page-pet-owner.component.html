@@ -1,18 +1,18 @@
-<div class="container screen" *ngIf="profile">
+<div class="container screen" *ngIf="petOwnerProfile">
   <div class="d-flex justify-content-end">
   <i class="bi bi-gear" routerLink="/owner-profile-form"></i>
   </div>
   <div class="row mt-2 gap-5 mb-4">
     <div class=" col-12 col-sm-4">
-      <img src="{{profile.profilePicture}}" class="img-fluid rounded-circle p-4 p-sm-5">
+      <img src="{{petOwnerProfile.profilePicture}}" class="img-fluid rounded-circle p-4 p-sm-5">
     </div>
     <div class=" col-12 col-sm-6 mt-sm-4">
       <div class="card-body">
-        <h2 class="card-title mb-4">{{ profile.name }}</h2>
+        <h2 class="card-title mb-4">{{ petOwnerProfile.name }}</h2>
         <h5 class="card-subtitle mb-2 text-body-secondary">About me</h5>
-        <p class="card-text mb-4">{{profile.profileText}}</p>
+        <p class="card-text mb-4">{{petOwnerProfile.profileText}}</p>
       </div>
-      <a [routerLink]="['/mailbox', profile.id]"  class="btn btn-primary">Send Message</a>
+      <a [routerLink]="['/mailbox', petOwnerProfile.id]"  class="btn btn-primary">Send Message</a>
     </div>
   </div>
 
@@ -21,16 +21,16 @@
     <div class="card col-12 col-sm">
       <div class="card-body">
         <h5 class="card-title">Personal Details</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary" *ngIf="profile.hasExperience == true">Experienced Kahu</h6>
-        <h6 class="card-subtitle mb-2 text-body-secondary" *ngIf="profile.hasExperience == false">First Time Kahu</h6>
-        <p class="card-text">age: {{profile.age}}</p>
-        <p>Postal code: {{ profile.postalCode }}</p>
+        <h6 class="card-subtitle mb-2 text-body-secondary" *ngIf="petOwnerProfile.hasExperience">Experienced Kahu</h6>
+        <h6 class="card-subtitle mb-2 text-body-secondary" *ngIf="!petOwnerProfile.hasExperience">First Time Kahu</h6>
+        <p class="card-text">age: {{petOwnerProfile.age}}</p>
+        <p>Postal code: {{ petOwnerProfile.postalCode }}</p>
         <p>Is looking for: </p>
-        <figure class="figure" *ngIf="profile.lookingFor.includes(PetOwnershipType.ADOPTION)">
+        <figure class="figure" *ngIf="petOwnerProfile.lookingFor.includes(PetOwnershipType.ADOPTION)">
           <img src="icons-pet-heart.png" class="figure-img img-fluid rounded me-5" alt="Ein Beispielbild">
           <figcaption class="figure-caption text-center me-5">Forever pet</figcaption>
         </figure>
-        <figure class="figure" *ngIf="profile.lookingFor.includes(PetOwnershipType.FOSTER)">
+        <figure class="figure" *ngIf="petOwnerProfile.lookingFor.includes(PetOwnershipType.FOSTER)">
           <img src="icon shelter.png" class="figure-img img-fluid rounded" alt="Ein Beispielbild">
           <figcaption class="figure-caption text-center">Foster pet</figcaption>
         </figure>
@@ -39,12 +39,12 @@
     <div class="card col-12 col-sm">
       <div class="card-body">
         <h5 class="card-title mb-3">Living Situation</h5>
-        <p>area: {{profile.residentialArea}}</p>
-        <p class="card-text">type of home: {{ profile.typeOfHome }}</p>
-        <p>Home size: {{profile.homeSize}} m²</p>
-        <p>lives with children: {{profile.hasChildren ? "yes" : "no"}}</p>
-        <p>lives with other pets: {{profile.hasPets ? "yes" : "no"}}</p>
-        <p>has a garden: {{profile.hasGarden ? "yes" : "no"}}</p>
+        <p>area: {{petOwnerProfile.residentialArea}}</p>
+        <p class="card-text">type of home: {{ petOwnerProfile.typeOfHome }}</p>
+        <p>Home size: {{petOwnerProfile.homeSize}} m²</p>
+        <p>lives with children: {{petOwnerProfile.hasChildren ? "yes" : "no"}}</p>
+        <p>lives with other pets: {{petOwnerProfile.hasPets ? "yes" : "no"}}</p>
+        <p>has a garden: {{petOwnerProfile.hasGarden ? "yes" : "no"}}</p>
       </div>
     </div>
   </div>

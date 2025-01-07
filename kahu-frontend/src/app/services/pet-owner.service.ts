@@ -21,6 +21,14 @@ export class PetOwnerService {
     })
   }
 
+  getPetOwnerByID(id: string): Observable<PetOwner>{
+    return this.http.get<PetOwner>(this.url + "/" + id, {
+      headers: {
+        authorization: `Bearer ${this.loginService.getToken()}`
+      }
+    })
+  }
+
   modifyProfil(user: PetOwner): Observable<PetOwner>{
     return this.http.put<PetOwner>(this.url, user, {
       headers: {

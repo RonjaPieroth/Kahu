@@ -14,6 +14,9 @@ import {PetOverviewComponent} from './shelter-profile/pets/pet-overview/pet-over
 import {PetFormComponent} from './shelter-profile/pets/pet-form/pet-form.component';
 import {PetProfileComponent} from './shelter-profile/pets/pet-profile/pet-profile.component';
 import {ProfilePageShelterComponent} from './shelter-profile/profile-page-shelter/profile-page-shelter.component';
+import {
+  ProfilePagePetOwnerComponent
+} from './future-pet-owner-profile/profile-page-pet-owner/profile-page-pet-owner.component';
 
 const routes: Routes = [
   {path: "", component: StartPageComponent},
@@ -22,6 +25,7 @@ const routes: Routes = [
   {path: "profile", component: ProfilePageComponent},
   {path: "profile/pet/:id", component: PetProfileComponent},
   {path: "profile/shelter/:id", component: ProfilePageShelterComponent},
+  {path: "profile/kahu/:id", component: ProfilePagePetOwnerComponent},
   {path: "swipe", component: SwipePageComponent},
   {path: "matches", component: MatchesComponent},
   {path: "mailbox", component: PetOwnerMailboxComponent},
