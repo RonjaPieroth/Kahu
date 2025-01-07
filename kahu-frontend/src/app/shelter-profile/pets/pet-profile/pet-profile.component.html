@@ -1,5 +1,11 @@
 <div class="container screen" *ngIf="pet">
-  <div class="d-flex justify-content-end">
+  <button class="btn btn-light" routerLink="/pets" *ngIf="isOwningShelter">
+    <i class="bi bi-arrow-left"></i>
+  </button>
+  <button class="btn btn-light" routerLink="/matches" *ngIf="isMatch">
+    <i class="bi bi-arrow-left"></i>
+  </button>
+  <div class="d-flex justify-content-end" *ngIf="isOwningShelter">
     <i class="bi bi-gear cursor" [routerLink]="['/pet/modify', pet.id]"></i>
   </div>
   <div class="row mt-2 gap-5 mb-4">
@@ -22,7 +28,7 @@
         </figure>
         <p class="card-text mb-4">{{ pet.profileText }}</p>
       </div>
-      <a [routerLink]="['/mailbox', pet.shelter.id]" class="btn btn-primary">Send Message</a>
+      <a [routerLink]="['/mailbox', pet.shelter.id]" class="btn btn-primary" *ngIf="isMatch">Send Message</a>
     </div>
   </div>
 

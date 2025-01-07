@@ -1,27 +1,42 @@
 <div class="container screen d-flex justify-content-center">
-<div class="card">
-  <div id="carouselExample" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="carousel-item active p-5 pb-0" *ngFor="let picture of pet?.pictures">
-        <img src="{{picture}}" class="d-block w-100 rounded" alt="{{pet?.name}}">
+  <div class="card">
+    <div id="carouselExample" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active p-5 pb-0" *ngFor="let picture of pet?.pictures">
+          <img src="{{picture}}" class="d-block w-100 rounded" alt="{{pet?.name}}">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title text-center pb-3">{{ pet?.name }} <i class="bi-chevron-down cursor fs-6"
+                                                                 data-bs-toggle="modal"
+                                                                 data-bs-target="#exampleModal"></i></h5>
+      <p class="card-text">{{ pet?.profileText }}</p>
+      <div class="d-flex mt-3 justify-content-around">
+        <button class="btn btn-primary red  me-3" (click)="noMatch()"><i class="bi bi-x-circle fs-2"></i></button>
+        <button class="btn btn-primary green ms-3" (click)="match()"><i class="bi bi-check-circle fs-2"></i></button>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
-  <div class="card-body">
-    <h5 class="card-title text-center pb-3">{{pet?.name}}</h5>
-    <p class="card-text">{{pet?.profileText}}</p>
-    <div class="d-flex mt-3 justify-content-around">
-      <button class="btn btn-primary red  me-3" (click)="noMatch()"><i class="bi bi-x-circle fs-2"></i></button>
-      <button class="btn btn-primary green ms-3" (click)="match()"><i class="bi bi-check-circle fs-2"></i></button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-80">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Profile {{pet?.name}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+          <div class="modal-body">
+            <app-pet-profile [pet]="pet"></app-pet-profile>
+          </div>
+      </div>
     </div>
   </div>
-</div>
 </div>

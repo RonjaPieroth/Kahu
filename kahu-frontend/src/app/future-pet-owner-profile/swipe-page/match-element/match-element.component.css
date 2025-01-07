@@ -6,6 +6,9 @@
   background-color: red;
 }
 
+.modal-dialog.modal-80 {
+  max-width: 80%;
+}
 
 .card{
   max-width: 50%;

@@ -4,10 +4,9 @@
  <div class="d-flex justify-content-end">
     <i class="bi bi-x-circle" style="color: red;" (click)="removeMatch(match)"></i>
  </div>
-  <img src="{{match.pictures[0]}}" class="card-img-top" alt="{{match.name}}">
+  <img src="{{match.pictures[0]}}" class=" card-img" alt="{{match.name}}">
   <div class="card-body">
-    <h5 class="card-title">{{ match.name }}</h5>
-    <a href="#" class="btn btn-primary">Profile</a>
+    <h5 class="card-title text-center cursor" [routerLink]="['/profile/pet', match.id]">{{ match.name }}</h5>
   </div>
 </div>
 </div>
