@@ -13,6 +13,7 @@ import {ShelterFormComponent} from './shelter-profile/shelter-form/shelter-form.
 import {PetOverviewComponent} from './shelter-profile/pets/pet-overview/pet-overview.component';
 import {PetFormComponent} from './shelter-profile/pets/pet-form/pet-form.component';
 import {PetProfileComponent} from './shelter-profile/pets/pet-profile/pet-profile.component';
+import {ProfilePageShelterComponent} from './shelter-profile/profile-page-shelter/profile-page-shelter.component';
 
 const routes: Routes = [
   {path: "", component: StartPageComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: "sign-up", component: SignupFormComponent},
   {path: "profile", component: ProfilePageComponent},
   {path: "profile/pet/:id", component: PetProfileComponent},
+  {path: "profile/shelter/:id", component: ProfilePageShelterComponent},
   {path: "swipe", component: SwipePageComponent},
   {path: "matches", component: MatchesComponent},
   {path: "mailbox", component: PetOwnerMailboxComponent},

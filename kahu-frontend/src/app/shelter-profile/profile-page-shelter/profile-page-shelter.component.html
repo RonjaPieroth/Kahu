@@ -1,41 +1,41 @@
-<div class="container screen" *ngIf="profile">
+<div class="container screen" *ngIf="shelterProfile">
   <div class="d-flex justify-content-end">
-    <i class="bi bi-gear" routerLink="/shelter-profile-form" (click)="console.log('Navigating to shelter-profile-form')"></i>
+    <i class="bi bi-gear cursor" routerLink="/shelter-profile-form" (click)="console.log('Navigating to shelter-profile-form')" *ngIf="visitingProfile === shelterProfile"></i>
   </div>
   <div class="mb-4 text-center">
     <div class="card-body">
-      <h2 class="card-title mb-4">{{ profile.name }}</h2>
+      <h2 class="card-title mb-4">{{ shelterProfile.name }}</h2>
       <h5 class="card-subtitle mb-2 text-body-secondary"
-          *ngIf="profile.pointOfContact">Contact person: {{ profile.pointOfContact }}</h5>
-      <p class="card-text mb-4">{{ profile.profileText}}</p>
+          *ngIf="shelterProfile.pointOfContact">Contact person: {{ shelterProfile.pointOfContact }}</h5>
+      <p class="card-text mb-4">{{ shelterProfile.profileText}}</p>
     </div>
-    <a [routerLink]="['/mailbox', profile.id]" class="btn btn-primary">Send Message</a>
+    <a [routerLink]="['/mailbox', shelterProfile.id]" class="btn btn-primary" *ngIf="shelterProfile != visitingProfile">Send Message</a>
   </div>
 
 
   <div class="row gap-3 mb-5 me-1 ms-1">
     <div class="card col-12 col-sm">
-      <div class="card-body" *ngIf="profile.mailAddress || profile.website">
+      <div class="card-body" *ngIf="shelterProfile.mailAddress || shelterProfile.website">
         <h5 class="card-title mb-3">Contact Details</h5>
-        <p *ngIf="profile.hoursOfOperation">Opening hours: {{ profile.hoursOfOperation }}</p>
-        <p *ngIf="profile.website">website: {{ profile.website }}</p>
-        <p *ngIf="profile.mailAddress">e-mail: {{ profile.mailAddress }}</p>
+        <p *ngIf="shelterProfile.hoursOfOperation">Opening hours: {{ shelterProfile.hoursOfOperation }}</p>
+        <p *ngIf="shelterProfile.website">website: {{ shelterProfile.website }}</p>
+        <p *ngIf="shelterProfile.mailAddress">e-mail: {{ shelterProfile.mailAddress }}</p>
       </div>
     </div>
     <div class="card col-12 col-sm">
       <div class="card-body">
         <h5 class="card-title mb-3">Address</h5>
-        <p>{{ profile.address.streetName }} {{ profile.address.houseNumber }}</p>
-        <p>{{ profile.address.postalCode }}, {{ profile.address.city }}</p>
-        <p>{{ profile.address.country }}</p>
+        <p>{{ shelterProfile.address.streetName }} {{ shelterProfile.address.houseNumber }}</p>
+        <p>{{ shelterProfile.address.postalCode }}, {{ shelterProfile.address.city }}</p>
+        <p>{{ shelterProfile.address.country }}</p>
       </div>
     </div>
   </div>
 
-<div  *ngIf="profile.pets.length > 0" class="d-flex justify-content-center align-items-center">
+<div  *ngIf="shelterProfile.pets.length > 0" class="d-flex justify-content-center align-items-center">
   <div id="carouselExampleCaptions" class="carousel slide" style=" max-width: 24rem">
     <div class="carousel-inner">
-      <div class="carousel-item" *ngFor="let pet of profile.pets; let i = index" [class.active]="i ===0" >
+      <div class="carousel-item" *ngFor="let pet of shelterProfile.pets; let i = index" [class.active]="i ===0" >
         <img src="{{pet.pictures[0]}}" class="d-block w-100 card-img" alt="{{pet.name}}">
         <div class="carousel-caption d-none d-md-block">
           <h5 class="cursor" [routerLink]="['/profile/pet', pet.id]">{{ pet.name }}</h5>

@@ -21,6 +21,14 @@ export class ShelterService {
     })
   }
 
+  getShelterByID(id: string): Observable<Shelter>{
+    return this.http.get<Shelter>(this.url + "/" + id, {
+      headers: {
+        authorization: `Bearer ${this.loginService.getToken()}`
+      }
+    })
+  }
+
   modifyProfil(shelter: Shelter): Observable<Shelter>{
     return this.http.put<Shelter>(this.url, shelter, {
       headers: {

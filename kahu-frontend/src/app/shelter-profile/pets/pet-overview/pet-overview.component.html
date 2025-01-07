@@ -5,10 +5,10 @@
     <i class="bi bi-plus" routerLink="/pet/new"></i>
   </div>
   <div class="row gap-4 justify-content-evenly">
-  <div class="card col-12 col-sm-3 col-md-2" style="max-width: 18rem;" *ngFor="let pet of pets">
-    <img src="{{pet.pictures[0]}}" class="card-img-top p-2 card-img" alt="{{pet.name}}">
+  <div class="card col-12 col-sm-4 col-md-3 col-lg-2" style="max-width: 18rem;" *ngFor="let pet of pets">
+    <img src="{{pet.pictures[0]}}" class="card-img mt-2" alt="{{pet.name}}">
     <div class="card-body">
-      <h5 class="card-title">{{ pet.name }}</h5>
+      <h5 class="card-title text-center">{{ pet.name }}</h5>
       <a [routerLink]="['/profile/pet', pet.id]" class="btn btn-primary">go to profile</a>
     </div>
   </div>

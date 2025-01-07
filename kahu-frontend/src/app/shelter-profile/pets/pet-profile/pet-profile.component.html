@@ -16,7 +16,7 @@
       <div class="card-body">
         <h2 class="card-title mb-4">{{ pet.name }} <i
           [ngClass]="pet.gender === 'Male'? 'bi bi-gender-male': 'bi bi-gender-female'"></i></h2>
-        <h5 class="card-subtitle mb-2 text-body-secondary">Shelter: {{ pet.shelter.name }}</h5>
+        <a target="_blank" class="text-decoration-none" [routerLink]="['/profile/shelter', pet.shelter.id]"><h5 class="card-subtitle mb-2 text-body-secondary cursor">Shelter: {{ pet.shelter.name }}</h5></a>
         <p class="card-text">age: {{ pet.age }} months</p>
         <figure class="figure" *ngIf="pet.lookingFor.includes(PetOwnershipType.ADOPTION)">
           <img src="icons-pet-heart.png" class="figure-img img-fluid rounded me-5" alt="forever">

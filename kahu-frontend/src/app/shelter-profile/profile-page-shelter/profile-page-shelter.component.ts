@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import {Shelter} from '../../models/shelter';
-import {PetService} from '../../services/pet.service';
+import {PetOwner} from '../../models/pet-owner';
+import {ActivatedRoute} from '@angular/router';
+import {ShelterService} from '../../services/shelter.service';
 
 
 
@@ -12,21 +14,34 @@ import {PetService} from '../../services/pet.service';
 })
 export class ProfilePageShelterComponent {
 
-  profile?: Shelter;
+  shelterProfile?: Shelter;
+  visitingProfile?: Shelter | PetOwner;
+  urlID?: string | null;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private route: ActivatedRoute, private shelterService: ShelterService) {
+    this.urlID = route.snapshot.paramMap.get("id");
+
     this.checkForProfile();
   }
 
   checkForProfile(): void{
     if (this.loggedIn) {
       this.loginService.getProfile().subscribe(data => {
-        if (data.profile && !this.loginService.isPetOwner(data.profile)) {
-          this.profile = data.profile
+        if (data.profile) {
+          this.visitingProfile = data.profile
+          if (!this.urlID && !this.loginService.isPetOwner(this.visitingProfile)){
+            this.shelterProfile = this.visitingProfile;
+          }
+          if (this.urlID){
+            console.log(this.urlID);
+            this.shelterService.getShelterByID(this.urlID).subscribe(data => this.shelterProfile = data);
+          }
         }
       });
     }
   }
+
+
 
   get loggedIn(): boolean {
     return this.loginService.getToken() != "";
