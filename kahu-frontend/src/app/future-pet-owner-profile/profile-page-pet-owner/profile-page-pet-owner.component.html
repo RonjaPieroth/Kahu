@@ -1,5 +1,5 @@
 <div class="container screen" *ngIf="petOwnerProfile">
-  <div class="d-flex justify-content-end">
+  <div class="d-flex justify-content-end" *ngIf="petOwnerProfile===visitingProfile">
   <i class="bi bi-gear" routerLink="/owner-profile-form"></i>
   </div>
   <div class="row mt-2 gap-5 mb-4">
@@ -12,7 +12,7 @@
         <h5 class="card-subtitle mb-2 text-body-secondary">About me</h5>
         <p class="card-text mb-4">{{petOwnerProfile.profileText}}</p>
       </div>
-      <a [routerLink]="['/mailbox', petOwnerProfile.id]"  class="btn btn-primary">Send Message</a>
+      <a [routerLink]="['/mailbox', petOwnerProfile.id]"  class="btn btn-primary" *ngIf="visitingProfile != petOwnerProfile">Send Message</a>
     </div>
   </div>
 
