@@ -6,3 +6,8 @@ i {
 .card-img {
   max-height: 350px;
 }
+
+.link-light h5{
+  background-color: rgba(70, 70, 89, 0.4);
+  border-radius: 5px;
+}
