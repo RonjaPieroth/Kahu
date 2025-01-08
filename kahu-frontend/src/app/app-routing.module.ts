@@ -17,6 +17,7 @@ import {ProfilePageShelterComponent} from './shelter-profile/profile-page-shelte
 import {
   ProfilePagePetOwnerComponent
 } from './future-pet-owner-profile/profile-page-pet-owner/profile-page-pet-owner.component';
+import {ChatComponent} from './chat/chat.component';
 
 const routes: Routes = [
   {path: "", component: StartPageComponent},
@@ -28,7 +29,7 @@ const routes: Routes = [
   {path: "profile/kahu/:id", component: ProfilePagePetOwnerComponent},
   {path: "swipe", component: SwipePageComponent},
   {path: "matches", component: MatchesComponent},
-  {path: "mailbox", component: PetOwnerMailboxComponent},
+  {path: "mailbox", component: ChatComponent},
   {path: "mailbox/:userId", component: PetOwnerMailboxComponent},
   {path: "mailbox/:userId/ :petID", component: PetOwnerMailboxComponent},
   {path: "notifications", component: NotificationsComponent},
