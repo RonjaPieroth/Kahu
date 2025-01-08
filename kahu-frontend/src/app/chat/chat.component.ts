@@ -12,15 +12,15 @@ export class ChatComponent implements OnInit{
   constructor(private chatService: ChatClientService,
               private channelService: ChannelService,
               private streamI18nService: StreamI18nService) {
-    const apiKey = "dz5f4d5kzrue";
-    const userId = 'square-frost-9';
-    const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic3F1YXJlLWZyb3N0LTkiLCJleHAiOjE3MzYzNDg2NDB9._caHGsOC0NPePGmUXWH7TAJI7cO8dYG1axuw-KJ5Ebs';
-    const userName = 'square';
+    const apiKey = "8ej3jr8f5dgw";
+    const userId = '1';
+    const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMSJ9.c3dPfJYDGGPBVims5mvYN10znN2m4bg-JIbhSkfGf8o';
+    const userName = 'Anna Roberts';
 
     const user: User = {
       id: userId,
       name: userName,
-      image: `https://getstream.io/random_png/?name=${userName}`,
+      image: `example-pics/example profile-pic.jpg`,
     };
 
     this.chatService.init(apiKey, user, userToken);
@@ -28,15 +28,14 @@ export class ChatComponent implements OnInit{
   }
 
   async ngOnInit() {
-    const channel = this.chatService.chatClient.channel('messaging', 'talking-about-angular', {
+    const channel = this.chatService.chatClient.channel('messaging', 'talking-about-pets', {
       // add as many custom fields as you'd like
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png',
-      name: 'Talking about Angular',
+      name: 'Mailbox',
     });
     await channel.create();
     this.channelService.init({
       type: 'messaging',
-      id: { $eq: 'talking-about-angular' },
+      id: { $eq: 'talking-about-pets' },
     });
   }
 }
