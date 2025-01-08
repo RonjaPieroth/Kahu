@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ChatClientService, ChannelService, StreamI18nService} from 'stream-chat-angular';
 
 @Component({
   selector: 'app-root',
