@@ -28,6 +28,10 @@ import {ProfilePageComponent} from './profile-page/profile-page.component';
 import { PetOverviewComponent } from './shelter-profile/pets/pet-overview/pet-overview.component';
 import { PetProfileComponent } from './shelter-profile/pets/pet-profile/pet-profile.component';
 import { MatchElementComponent } from './future-pet-owner-profile/swipe-page/match-element/match-element.component';
+import {StreamAutocompleteTextareaModule, StreamChatModule} from 'stream-chat-angular';
+import {TranslateModule} from '@ngx-translate/core';
+import { ChatComponent } from './chat/chat.component';
+
 
 @NgModule({
   declarations: [
@@ -53,14 +57,18 @@ import { MatchElementComponent } from './future-pet-owner-profile/swipe-page/mat
     ProfilePageComponent,
     PetOverviewComponent,
     PetProfileComponent,
-    MatchElementComponent
+    MatchElementComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    StreamAutocompleteTextareaModule,
+    TranslateModule.forRoot(),
+    StreamChatModule
   ],
   providers: [],
   bootstrap: [AppComponent]
