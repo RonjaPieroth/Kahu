@@ -3,7 +3,7 @@ import {Address} from './address';
 import {Login} from './login';
 
 export interface Shelter {
-  id?: number;
+  id?: string;
   name: string;
   profileText?: string
   login: Login;

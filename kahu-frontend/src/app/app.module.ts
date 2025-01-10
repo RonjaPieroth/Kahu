@@ -31,6 +31,7 @@ import { MatchElementComponent } from './future-pet-owner-profile/swipe-page/mat
 import {StreamAutocompleteTextareaModule, StreamChatModule} from 'stream-chat-angular';
 import {TranslateModule} from '@ngx-translate/core';
 import { ChatComponent } from './chat/chat.component';
+import { MailboxComponent } from './mailbox/mailbox.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { ChatComponent } from './chat/chat.component';
     PetOverviewComponent,
     PetProfileComponent,
     MatchElementComponent,
-    ChatComponent
+    ChatComponent,
+    MailboxComponent
   ],
   imports: [
     BrowserModule,

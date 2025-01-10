@@ -18,6 +18,7 @@ import {
   ProfilePagePetOwnerComponent
 } from './future-pet-owner-profile/profile-page-pet-owner/profile-page-pet-owner.component';
 import {ChatComponent} from './chat/chat.component';
+import {MailboxComponent} from './mailbox/mailbox.component';
 
 const routes: Routes = [
   {path: "", component: StartPageComponent},
@@ -30,7 +31,7 @@ const routes: Routes = [
   {path: "swipe", component: SwipePageComponent},
   {path: "matches", component: MatchesComponent},
   {path: "mailbox", component: ChatComponent},
-  {path: "mailbox/:userId", component: PetOwnerMailboxComponent},
+  {path: "mailbox/:channelId", component: MailboxComponent},
   {path: "mailbox/:userId/ :petID", component: PetOwnerMailboxComponent},
   {path: "notifications", component: NotificationsComponent},
   {path: "owner-profile-form", component: OwnerProfilFormComponent},

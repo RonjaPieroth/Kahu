@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ChannelService, ChatClientService, StreamI18nService} from 'stream-chat-angular';
-import {User} from 'stream-chat';
+import {TokenOrProvider, User} from 'stream-chat';
+import {Token} from '@angular/compiler';
 
 @Component({
   selector: 'app-chat',
@@ -9,33 +10,77 @@ import {User} from 'stream-chat';
 })
 export class ChatComponent implements OnInit{
 
-  constructor(private chatService: ChatClientService,
-              private channelService: ChannelService,
-              private streamI18nService: StreamI18nService) {
-    const apiKey = "8ej3jr8f5dgw";
-    const userId = '1';
-    const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMSJ9.c3dPfJYDGGPBVims5mvYN10znN2m4bg-JIbhSkfGf8o';
-    const userName = 'Anna Roberts';
+  // Beispiel für die Benutzer
+  petOwnerId = '1'; // ID des zukünftigen Tierbesitzers
+  shelterId = '2';  // ID des Tierheims
+  apiKey = '8ej3jr8f5dgw'; // API Key von Stream
 
-    const user: User = {
-      id: userId,
-      name: userName,
-      image: `example-pics/example profile-pic.jpg`,
-    };
+  petOwnerToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMSJ9.c3dPfJYDGGPBVims5mvYN10znN2m4bg-JIbhSkfGf8o'; // Token für den PetOwner
+  shelterToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMiJ9.FLCSPsljeBJBOwIpT01GiQ2Q2svw08m7iYp9hzSq31c';   // Token für das Shelter
 
-    this.chatService.init(apiKey, user, userToken);
-    this.streamI18nService.setTranslation();
+  // Aktiver Benutzer (PetOwner)
+  activeUserId = '2';  // ID des aktiven Benutzers (kann auch dynamically geändert werden)
+  activeUser!: User;
+  otherUser!: User;
+  activeToken!: TokenOrProvider;
+
+  constructor(
+    private chatService: ChatClientService,
+    private channelService: ChannelService,
+    private streamI18nService: StreamI18nService
+  ) {
+    this.streamI18nService.setTranslation(); // Optional für mehrsprachige Unterstützung
   }
 
   async ngOnInit() {
+
+    // Bestimme den aktiven Benutzer (PetOwner oder Shelter)
+    if (this.activeUserId === this.petOwnerId) {
+      this.activeUser = {
+        id: this.petOwnerId,
+        name: 'Pet Owner',
+        image: 'example-pics/example profile-pic.jpg',
+      };
+      this.otherUser = {
+        id: this.shelterId,
+        name: 'Animal Shelter',
+        image: 'example-pics/felipa.jpg',
+      };
+      this.activeToken = this.petOwnerToken;
+    } else {
+      this.activeUser = {
+        id: this.shelterId,
+        name: 'Animal Shelter',
+        image: 'example-pics/shelter-profile-pic.jpg',
+      };
+      this.otherUser = {
+        id: this.petOwnerId,
+        name: 'Pet Owner',
+        image: 'example-pics/pet-owner-profile-pic.jpg',
+      };
+      this.activeToken = this.shelterToken;
+    }
+
+    // Verbinde den aktiven Benutzer mit Stream-Chat
+    await this.chatService.init(this.apiKey, this.activeUser, this.activeToken);
+    await this.chatService.chatClient.connectUser(this.activeUser, this.activeToken);
+
+    // Erstelle den Channel, der zwischen dem aktiven Benutzer und dem anderen Benutzer funktioniert
     const channel = this.chatService.chatClient.channel('messaging', 'talking-about-pets', {
-      // add as many custom fields as you'd like
-      name: 'Mailbox',
+      name: "test",
     });
+
+    // Channel erstellen, falls er noch nicht existiert
     await channel.create();
+
+    // Channel initialisieren
     this.channelService.init({
       type: 'messaging',
       id: { $eq: 'talking-about-pets' },
     });
+
+    console.log('Aktiver Benutzer verbunden, Channel bereit.');
   }
+
+
 }

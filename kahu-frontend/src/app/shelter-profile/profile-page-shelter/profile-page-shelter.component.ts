@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import {Shelter} from '../../models/shelter';
 import {PetOwner} from '../../models/pet-owner';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ShelterService} from '../../services/shelter.service';
 
 
@@ -18,7 +18,7 @@ export class ProfilePageShelterComponent {
   visitingProfile?: Shelter | PetOwner;
   urlID?: string | null;
 
-  constructor(private loginService: LoginService, private route: ActivatedRoute, private shelterService: ShelterService) {
+  constructor(private loginService: LoginService, private route: ActivatedRoute, private shelterService: ShelterService, private router: Router) {
     this.urlID = route.snapshot.paramMap.get("id");
 
     this.checkForProfile();
@@ -41,10 +41,16 @@ export class ProfilePageShelterComponent {
     }
   }
 
+  startChat(){
+    const channelId = `${this.visitingProfile?.id}-${this.shelterProfile?.id}`;
+    this.router.navigate(['/mailbox', channelId]);
+
+  }
 
 
   get loggedIn(): boolean {
     return this.loginService.getToken() != "";
+
   }
 
   protected readonly console = console;

@@ -38,6 +38,7 @@
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/stream-chat-angular/src/assets/styles/css/index.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],

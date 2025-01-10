@@ -9,7 +9,7 @@
           *ngIf="shelterProfile.pointOfContact">Contact person: {{ shelterProfile.pointOfContact }}</h5>
       <p class="card-text mb-4">{{ shelterProfile.profileText}}</p>
     </div>
-    <a [routerLink]="['/mailbox', shelterProfile.id]" class="btn btn-primary" *ngIf="shelterProfile != visitingProfile">Send Message</a>
+    <a (click)="startChat()" class="btn btn-primary" *ngIf="shelterProfile != visitingProfile">Send Message</a>
   </div>
 
 

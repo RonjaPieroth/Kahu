@@ -1,0 +1,19 @@
+.stream-chat {
+  display: flex;
+  height: 100vh;
+}
+
+.stream-channel-list {
+  width: 30%;
+  border-right: 1px solid #e0e0e0;
+}
+
+.stream-chat-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+stream-thread {
+  border-left: 1px solid #e0e0e0;
+}
