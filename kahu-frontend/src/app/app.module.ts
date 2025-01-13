@@ -32,6 +32,8 @@ import {StreamAutocompleteTextareaModule, StreamChatModule} from 'stream-chat-an
 import {TranslateModule} from '@ngx-translate/core';
 import { ChatComponent } from './chat/chat.component';
 import { MailboxComponent } from './mailbox/mailbox.component';
+import { ChatElementComponent } from './chat/chat-element/chat-element.component';
+import { ChatOverviewComponent } from './mailbox/chat-overview/chat-overview.component';
 
 
 @NgModule({
@@ -60,7 +62,9 @@ import { MailboxComponent } from './mailbox/mailbox.component';
     PetProfileComponent,
     MatchElementComponent,
     ChatComponent,
-    MailboxComponent
+    MailboxComponent,
+    ChatElementComponent,
+    ChatOverviewComponent
   ],
   imports: [
     BrowserModule,

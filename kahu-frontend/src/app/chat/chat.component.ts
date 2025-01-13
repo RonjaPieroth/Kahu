@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ChannelService, ChatClientService, StreamI18nService} from 'stream-chat-angular';
 import {TokenOrProvider, User} from 'stream-chat';
-import {Token} from '@angular/compiler';
 
 @Component({
   selector: 'app-chat',
