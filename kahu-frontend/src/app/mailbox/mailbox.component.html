@@ -1,11 +1,14 @@
 <div class="container screen" style="height: 100vh;">
-  <div class="row">
-  <app-chat-overview class="col-4"></app-chat-overview>
+  <div class="row" *ngIf="chats.length > 0; else noChats">
+  <app-chat-overview class="col-4" [chats]="chats"></app-chat-overview>
     <div class="card col" style="height: 80vh;">
-      <h5 class="card-header p-3 text-center">User - Subject</h5>
+      <h5 class="card-header p-3 text-center">{{activeChat?.userTwoId}} - {{activeChat?.subject }}</h5>
       <div class="card-body">
-        <app-chat></app-chat>
+        <app-chat [owningProfile]="activeUser" [chat]="activeChat"></app-chat>
       </div>
     </div>
   </div>
+  <ng-template #noChats>
+    <p class="text-center p-5 fw-bolder">You don't have any chats yet!</p>
+  </ng-template>
 </div>

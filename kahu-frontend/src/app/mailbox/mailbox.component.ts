@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {ChatService} from '../services/chat-service.service';
 import {PetOwner} from '../models/pet-owner';
 import {Shelter} from '../models/shelter';
-import {ShelterService} from '../services/shelter.service';
-import {PetOwnerService} from '../services/pet-owner.service';
+import {ChatService} from '../services/chat.service';
+import {LoginService} from '../services/login.service';
+import {Chat} from '../models/chat';
 
 
 @Component({
@@ -13,31 +12,30 @@ import {PetOwnerService} from '../services/pet-owner.service';
   styleUrl: './mailbox.component.css'
 })
 export class MailboxComponent implements OnInit{
-  channelId: string | null = null;
-  activeUser?: PetOwner;
-  otherUser?: Shelter;
+  activeUser?: PetOwner | Shelter;
+  chats: Chat[] = [];
+  activeChat?: Chat;
+
 
   constructor(
-    private route: ActivatedRoute,
     private chatService: ChatService,
-    private shelterService: ShelterService,
-    private petOwnerService: PetOwnerService
+    private loginService: LoginService
   ) {
+
+    this.loginService.getProfile().subscribe(data => {
+      this.activeUser = data.profile;
+      if (this.activeUser?.id){
+      this.chatService.getChats(this.activeUser.id).subscribe(data =>
+      {this.chats = data;
+        if (this.chats.length > 0){
+        this.activeChat = this.chats[0];}
+      })}
+    });
+
   }
 
   ngOnInit(){
-    this.channelId = this.route.snapshot.paramMap.get('channelId');
 
-    if (this.channelId) {
-      const [petOwnerId, shelterId] = this.channelId.split('-');
-      this.petOwnerService.getPetOwnerByID(petOwnerId).subscribe(data => {
-        this.activeUser = data; this.shelterService.getShelterByID(shelterId).subscribe(data => {
-          this.otherUser = data;
-          this.chatService.startChat(this.activeUser!, this.otherUser);
-        })
-      })
-
-    }
   }
 
 
