@@ -1,8 +1,11 @@
-<div class="stream-chat theme-light">
-  <stream-channel-list></stream-channel-list>
-
-  <div class="stream-chat-container">
-    <stream-channel></stream-channel>
-    <stream-thread></stream-thread>
+<div class="container screen" style="height: 100vh;">
+  <div class="row">
+  <app-chat-overview class="col-4"></app-chat-overview>
+    <div class="card col" style="height: 80vh;">
+      <h5 class="card-header p-3 text-center">User - Subject</h5>
+      <div class="card-body">
+        <app-chat></app-chat>
+      </div>
+    </div>
   </div>
 </div>

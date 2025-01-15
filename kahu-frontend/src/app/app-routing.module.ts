@@ -19,6 +19,8 @@ import {
 } from './future-pet-owner-profile/profile-page-pet-owner/profile-page-pet-owner.component';
 import {ChatComponent} from './chat/chat.component';
 import {MailboxComponent} from './mailbox/mailbox.component';
+import {ChatElementComponent} from './chat/chat-element/chat-element.component';
+import {ChatOverviewComponent} from './mailbox/chat-overview/chat-overview.component';
 
 const routes: Routes = [
   {path: "", component: StartPageComponent},
@@ -30,8 +32,8 @@ const routes: Routes = [
   {path: "profile/kahu/:id", component: ProfilePagePetOwnerComponent},
   {path: "swipe", component: SwipePageComponent},
   {path: "matches", component: MatchesComponent},
-  {path: "mailbox", component: ChatComponent},
-  {path: "mailbox/:channelId", component: MailboxComponent},
+  {path: "mailbox", component: MailboxComponent},
+  {path: "mailbox/:channelId", component: ChatElementComponent},
   {path: "mailbox/:userId/ :petID", component: PetOwnerMailboxComponent},
   {path: "notifications", component: NotificationsComponent},
   {path: "owner-profile-form", component: OwnerProfilFormComponent},

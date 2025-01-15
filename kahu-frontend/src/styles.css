@@ -32,6 +32,10 @@ nav.bg-body-tertiary{
   background-color: var(--beige-color);
 }
 
+.brown{
+  background-color: var(--brown-color);
+}
+
 div.card{
   background-color: var(--beige-color);
 }
