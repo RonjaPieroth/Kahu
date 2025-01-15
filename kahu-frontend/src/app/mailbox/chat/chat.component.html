@@ -1,0 +1,27 @@
+<div class="container d-flex flex-column" style="height: 85vh;" *ngIf="messages">
+<div class="content">
+<div class="d-flex  justify-content-end mb-2" *ngFor="let message of messages" [ngClass]="isOwningProfile(message.sender.id!) ? 'justify-content-end' : 'justify-content-start'">
+  <div>
+  <div class="brown
+   text-white p-2 rounded" *ng>
+    <p>{{ message.message }}</p>
+  </div>
+  <p class="text-muted">{{ message.timestamp}}</p>
+  </div>
+</div>
+
+<div class="d-flex justify-content-start mb-2">
+  <div>
+  <div class="brown text-white p-2 rounded">
+    <p>Mir geht's gut, danke!</p>
+  </div>
+    <p class="text-muted">Timestamp</p>
+  </div>
+</div>
+</div>
+<div  class="position-absolute bottom-0 w-100 pb-3 d-flex">
+  <textarea type="text" class="w-75 form-control rounded-4" rows="1"></textarea>
+  <i class="bi bi-envelope ps-3 fs-3 cursor" (click)="createMessage()"></i>
+</div>
+</div>
+
