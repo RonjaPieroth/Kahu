@@ -1,8 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Pet} from '../../../models/pet';
-import {PetService} from '../../../services/pet.service';
-import {LoginService} from '../../../services/login.service';
-import {PetOwner} from '../../../models/pet-owner';
+
 
 @Component({
   selector: 'app-match-element',
