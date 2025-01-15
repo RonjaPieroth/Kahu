@@ -5,7 +5,6 @@ import {LoginFormComponent} from './before-login/login-form/login-form.component
 import {SignupFormComponent} from './before-login/signup-form/signup-form.component';
 import {SwipePageComponent} from './future-pet-owner-profile/swipe-page/swipe-page.component';
 import {MatchesComponent} from './future-pet-owner-profile/matches/matches.component';
-import {PetOwnerMailboxComponent} from './future-pet-owner-profile/pet-owner-mailbox/pet-owner-mailbox.component';
 import {NotificationsComponent} from './future-pet-owner-profile/notifications/notifications.component';
 import {OwnerProfilFormComponent} from './future-pet-owner-profile/owner-profil-form/owner-profil-form.component';
 import {ProfilePageComponent} from './profile-page/profile-page.component';
@@ -17,9 +16,9 @@ import {ProfilePageShelterComponent} from './shelter-profile/profile-page-shelte
 import {
   ProfilePagePetOwnerComponent
 } from './future-pet-owner-profile/profile-page-pet-owner/profile-page-pet-owner.component';
-import {ChatComponent} from './chat/chat.component';
+import {ChatComponent} from './mailbox/chat/chat.component';
 import {MailboxComponent} from './mailbox/mailbox.component';
-import {ChatElementComponent} from './chat/chat-element/chat-element.component';
+import {ChatElementComponent} from './mailbox/chat-element/chat-element.component';
 import {ChatOverviewComponent} from './mailbox/chat-overview/chat-overview.component';
 
 const routes: Routes = [
@@ -34,7 +33,6 @@ const routes: Routes = [
   {path: "matches", component: MatchesComponent},
   {path: "mailbox", component: MailboxComponent},
   {path: "mailbox/:channelId", component: ChatElementComponent},
-  {path: "mailbox/:userId/ :petID", component: PetOwnerMailboxComponent},
   {path: "notifications", component: NotificationsComponent},
   {path: "owner-profile-form", component: OwnerProfilFormComponent},
   {path: "shelter-profile-form", component: ShelterFormComponent},
