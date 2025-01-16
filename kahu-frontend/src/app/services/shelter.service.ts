@@ -13,7 +13,7 @@ export class ShelterService {
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
 
-  createProfil(shelter: Shelter): Observable<Shelter>{
+  createProfile(shelter: Shelter): Observable<Shelter>{
     return this.http.post<Shelter>(this.url, shelter, {
       headers: {
         authorization: `Bearer ${this.loginService.getToken()}`

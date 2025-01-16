@@ -1,6 +1,6 @@
 <div class="container d-flex flex-column" style="height: 85vh;" *ngIf="messages">
 <div class="content">
-<div class="d-flex  justify-content-end mb-2" *ngFor="let message of messages" [ngClass]="isOwningProfile(message.sender.id!) ? 'justify-content-end' : 'justify-content-start'">
+<div class="d-flex  justify-content-end mb-2" *ngFor="let message of messages" [ngClass]="isOwningProfile(message.senderId) ? 'justify-content-end' : 'justify-content-start'">
   <div>
   <div class="brown
    text-white p-2 rounded" *ng>

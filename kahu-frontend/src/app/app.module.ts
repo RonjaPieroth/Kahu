@@ -1,12 +1,9 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {StartPageComponent} from './before-login/start-page/start-page.component';
-import {
-  ProfilePagePetOwnerComponent
-} from './future-pet-owner-profile/profile-page-pet-owner/profile-page-pet-owner.component';
+import {ProfilePagePetOwnerComponent} from './future-pet-owner-profile/profile-page-pet-owner/profile-page-pet-owner.component';
 import {PetFormComponent} from './shelter-profile/pets/pet-form/pet-form.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {FooterComponent} from './footer/footer.component';
