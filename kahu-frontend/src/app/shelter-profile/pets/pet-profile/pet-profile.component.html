@@ -28,7 +28,7 @@
         </figure>
         <p class="card-text mb-4">{{ pet.profileText }}</p>
       </div>
-      <a [routerLink]="['/mailbox', pet.shelter.id]" class="btn btn-primary" *ngIf="isMatch">Send Message</a>
+      <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary" *ngIf="isMatch">Send Message</a>
     </div>
   </div>
 
@@ -53,6 +53,23 @@
   <div class="row">
     <div class="col-12 col-sm-4 mb-2" *ngFor="let picture of pet.pictures">
       <img src="{{picture}}" class="img-fluid rounded shadow img-zoom">
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Write your message</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [formControl]="message"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="sendMessage()" [disabled]="message.invalid">Send</button>
+      </div>
     </div>
   </div>
 </div>

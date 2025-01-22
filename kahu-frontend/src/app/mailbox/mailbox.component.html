@@ -1,8 +1,8 @@
 <div class="container screen" style="height: 100vh;">
   <div class="row" *ngIf="chats.length > 0; else noChats">
-  <app-chat-overview class="col-4" [chats]="chats"></app-chat-overview>
+  <app-chat-overview class="col-4" [chats]="chats" [owningProfile]="activeUser" (changeChatEvent)="changeActiveChat($event)"></app-chat-overview>
     <div class="card col" style="height: 80vh;">
-      <h5 class="card-header p-3 text-center">{{activeChat?.userTwoId}} - {{activeChat?.subject }}</h5>
+      <h5 class="card-header p-3 text-center" *ngIf="chatpartner">{{chatpartner.name}} <span  *ngIf="pet">- {{pet.name}}</span></h5>
       <div class="card-body">
         <app-chat [owningProfile]="activeUser" [chat]="activeChat"></app-chat>
       </div>

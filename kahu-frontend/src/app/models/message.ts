@@ -8,5 +8,5 @@ export interface Message {
   timestamp: Date;
   senderId: string;
   recipientId: string
-  pet?: Pet;
+  petId?: number;
 }
