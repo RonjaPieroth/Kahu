@@ -9,6 +9,7 @@ import {PetService} from '../../services/pet.service';
 import {LoginService} from '../../services/login.service';
 import {Message} from '../../models/message';
 import {ChatService} from '../../services/chat.service';
+import {interval, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-chat-element',
@@ -22,13 +23,20 @@ export class ChatElementComponent implements OnChanges{
   chatpartner?: Shelter | PetOwner;
   pet?: Pet;
   lastMessage?: Message;
+  subscription!: Subscription;
 
-  constructor(private shelterService: ShelterService, private petOwnerService: PetOwnerService, private petService: PetService, private loginService: LoginService, private chatService: ChatService) {
+  constructor(
+    private shelterService: ShelterService,
+    private petOwnerService: PetOwnerService,
+    private petService: PetService,
+    private loginService: LoginService,
+    private chatService: ChatService) {
+    this.subscription = interval(2000).subscribe(()=> this.loadLastMessage());
   }
 
   ngOnChanges(): void {
     if (this.chat && this.owningProfile){
-      this.chatService.getLastMessage(this.chat).subscribe(data => this.lastMessage = data);
+      this.loadLastMessage();
       if (this.chat.subject){
         this.petService.getPetByID(this.chat.subject.toString()).subscribe(data => this.pet = data);
       }
@@ -39,8 +47,15 @@ export class ChatElementComponent implements OnChanges{
     }
   }
 
+  loadLastMessage(): void{
+    if (this.chat && this.owningProfile){
+      this.chatService.getLastMessage(this.chat).subscribe(data => this.lastMessage = data);
+    }
+  }
 
-
+  ngOnDestroy(): void{
+      this.subscription.unsubscribe();
+  }
 
 
 }

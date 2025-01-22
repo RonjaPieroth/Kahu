@@ -8,6 +8,7 @@ import {Pet} from '../models/pet';
 import {ShelterService} from '../services/shelter.service';
 import {PetOwnerService} from '../services/pet-owner.service';
 import {PetService} from '../services/pet.service';
+import {interval, Subscription} from 'rxjs';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class MailboxComponent{
   activeChat?: Chat;
   chatpartner?: Shelter | PetOwner;
   pet?: Pet;
+  subscription!: Subscription;
 
 
   constructor(
@@ -40,10 +42,16 @@ export class MailboxComponent{
         this.activeChat = this.chats[0];
         this.setChatPartner();
         this.setPet();
+        this.subscription = interval(5000).subscribe(() => this.refreshChats());
         }
       })}
     });
+  }
 
+  refreshChats(): void{
+    if (this.activeUser?.id){
+    this.chatService.getChats(this.activeUser.id).subscribe(data => this.chats = data);
+    }
   }
 
   setChatPartner(): void{
@@ -75,5 +83,8 @@ export class MailboxComponent{
     this.setPet();
   }
 
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
+  }
 
 }

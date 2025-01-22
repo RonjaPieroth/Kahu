@@ -5,6 +5,7 @@ import {Message} from '../../models/message';
 import {Shelter} from '../../models/shelter';
 import {PetOwner} from '../../models/pet-owner';
 import {FormControl, Validators} from '@angular/forms';
+import {interval, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -17,9 +18,12 @@ export class ChatComponent implements OnChanges {
   @Input() owningProfile?: Shelter | PetOwner;
   newMessage = new FormControl("", [Validators.required]);
   messages: Message[] = [];
+  subscription!: Subscription;
 
   constructor(private chatService: ChatService
   ) {
+    this.subscription = interval(10000).subscribe(()=> {this.getChatMessages();
+    });
   }
 
   ngOnChanges() {
@@ -57,5 +61,9 @@ export class ChatComponent implements OnChanges {
       message.petId = this.chat.subject;
     }
     return message;
+  }
+
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
   }
 }
