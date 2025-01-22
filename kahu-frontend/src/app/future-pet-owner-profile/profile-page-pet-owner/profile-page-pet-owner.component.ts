@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import {PetOwner} from '../../models/pet-owner';
 import {LoginService} from '../../services/login.service';
 import {PetOwnershipType} from '../../models/enums/pet-ownership-type';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Shelter} from '../../models/shelter';
 import {PetOwnerService} from '../../services/pet-owner.service';
+import {FormControl, Validators} from '@angular/forms';
+import {ChatService} from '../../services/chat.service';
 
 @Component({
   selector: 'app-profile-page-pet-owner',
@@ -16,8 +18,14 @@ export class ProfilePagePetOwnerComponent {
   petOwnerProfile?: PetOwner;
   visitingProfile?: PetOwner | Shelter
   urlID?: string | null;
+  message = new FormControl("", [Validators.required]);
 
-  constructor(private loginService: LoginService, private route: ActivatedRoute, private petOwnerService: PetOwnerService) {
+  constructor(
+    private loginService: LoginService,
+    private route: ActivatedRoute,
+    private petOwnerService: PetOwnerService,
+    private chatService: ChatService,
+    private router: Router) {
     this.urlID = route.snapshot.paramMap.get("id");
 
     this.checkForProfile();
@@ -42,6 +50,20 @@ export class ProfilePagePetOwnerComponent {
 
   get loggedIn(): boolean {
     return this.loginService.getToken() != "";
+  }
+
+  sendMessage(): void {
+    if (this.message.value && this.visitingProfile?.id && this.petOwnerProfile?.id)
+      this.chatService.saveMessage({
+        message: this.message.value,
+        timestamp: new Date(),
+        senderId: this.visitingProfile.id,
+        recipientId: this.petOwnerProfile.id
+      }).subscribe(data => {
+        console.log(data);
+        this.message.reset();
+        this.router.navigate(["/mailbox"])
+      });
   }
 
   protected readonly PetOwnershipType = PetOwnershipType;
