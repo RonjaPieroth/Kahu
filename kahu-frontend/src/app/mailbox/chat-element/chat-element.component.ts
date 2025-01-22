@@ -7,6 +7,8 @@ import {ShelterService} from '../../services/shelter.service';
 import {PetOwnerService} from '../../services/pet-owner.service';
 import {PetService} from '../../services/pet.service';
 import {LoginService} from '../../services/login.service';
+import {Message} from '../../models/message';
+import {ChatService} from '../../services/chat.service';
 
 @Component({
   selector: 'app-chat-element',
@@ -19,12 +21,14 @@ export class ChatElementComponent implements OnChanges{
   @Input() owningProfile?: Shelter | PetOwner;
   chatpartner?: Shelter | PetOwner;
   pet?: Pet;
+  lastMessage?: Message;
 
-  constructor(private shelterService: ShelterService, private petOwnerService: PetOwnerService, private petService: PetService, private loginService: LoginService) {
+  constructor(private shelterService: ShelterService, private petOwnerService: PetOwnerService, private petService: PetService, private loginService: LoginService, private chatService: ChatService) {
   }
 
   ngOnChanges(): void {
     if (this.chat && this.owningProfile){
+      this.chatService.getLastMessage(this.chat).subscribe(data => this.lastMessage = data);
       if (this.chat.subject){
         this.petService.getPetByID(this.chat.subject.toString()).subscribe(data => this.pet = data);
       }

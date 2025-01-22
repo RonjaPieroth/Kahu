@@ -31,6 +31,12 @@ export class ChatService {
     })
   }
 
+  getLastMessage(chat: Chat): Observable<Message>{
+    return this.http.post<Message>(this.url + "/last-message", chat, {headers: {
+      authorization: `Bearer ${this.loginService.getToken()}`
+    }})
+  }
+
   saveMessage(message: Message): Observable<Message>{
     return this.http.post<Message>(this.url, message,  {
       headers: {

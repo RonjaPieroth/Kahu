@@ -5,7 +5,7 @@
       <img src="shelter.png" class="img-fluid rounded-circle col-3"alt="shelter" *ngIf="!pet">
       <div class="col ps-5 pt-1">
       <h5 class="card-title">{{chatpartner.name}} <span *ngIf="pet">- {{pet.name}}</span></h5>
-      <p class="card-text pt-3 pb-2">Last message</p>
+      <p class="card-text pt-3 pb-2" *ngIf="lastMessage">{{lastMessage.message}}</p>
     </div>
     </div>
   </div>
