@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component} from '@angular/core';
 import {PetOwner} from '../models/pet-owner';
 import {Shelter} from '../models/shelter';
 import {ChatService} from '../services/chat.service';

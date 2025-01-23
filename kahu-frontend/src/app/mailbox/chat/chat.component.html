@@ -1,5 +1,5 @@
-<div class="container d-flex flex-column" style="height: 85vh;" *ngIf="messages">
-<div class="content">
+<div class="chat-container" *ngIf="messages">
+<div class="content chat-box">
 <div class="d-flex mb-2" *ngFor="let message of messages" [ngClass]="isOwningProfile(message.senderId) ? 'justify-content-end' : 'justify-content-start'">
   <div>
   <div class="brown

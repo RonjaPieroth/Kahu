@@ -1,26 +1,17 @@
-
-html {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  height: 100%;
-}
-
-#root {
+.chat-box{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  padding: 10px;
+  overflow-y: auto;
   display: flex;
-  height: 100%;
+  flex-direction: column;
+  gap: 10px;
+}
 
-  stream-channel-list {
-    width: 30%;
-  }
-
-  stream-channel {
-    width: 70%;
-  }
-
-  stream-thread {
-    width: 45%;
-  }
+.chat-container{
+  position: relative;
+  height: 70vh;
 }
