@@ -50,9 +50,11 @@ export class MailboxComponent{
 
   refreshChats(): void{
     if (this.activeUser?.id){
-    this.chatService.getChats(this.activeUser.id).subscribe(data => this.chats = data);
+    this.chatService.getChats(this.activeUser.id).subscribe(data => {
+      if(!this.isEqual(this.chats, data)){
+        this.chats = data;}})}
     }
-  }
+
 
   setChatPartner(): void{
     if (this.activeChat){
@@ -81,6 +83,10 @@ export class MailboxComponent{
   reloadChatTitle(): void {
     this.setChatPartner();
     this.setPet();
+  }
+
+  isEqual(originalChats: Chat[], newChats: Chat[]): boolean{
+    return JSON.stringify(originalChats) === JSON.stringify(newChats);
   }
 
   ngOnDestroy(): void{
