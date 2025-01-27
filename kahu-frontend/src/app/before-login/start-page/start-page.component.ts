@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {PetOwner} from '../../models/pet-owner';
 import {LoginService} from '../../services/login.service';
 import {Shelter} from '../../models/shelter';
@@ -10,7 +10,8 @@ import {Shelter} from '../../models/shelter';
 })
 export class StartPageComponent {
 
-  loggedInProfile?: PetOwner|Shelter;
+  isLoading: boolean = true;
+  loggedInProfile?: PetOwner | Shelter;
 
   constructor(private loginService: LoginService) {
   }
@@ -20,8 +21,10 @@ export class StartPageComponent {
       this.loginService.getProfile().subscribe(data => {
         if (data.profile) {
           this.loggedInProfile = data.profile
+          this.isLoading = false;
         }
-      });
+      },);
+
     }
   }
 

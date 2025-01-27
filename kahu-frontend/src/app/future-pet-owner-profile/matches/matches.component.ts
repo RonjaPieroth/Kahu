@@ -13,12 +13,14 @@ export class MatchesComponent {
 
   matches: Pet[] = [];
   profile?: PetOwner;
+  isLoading: boolean=true;
 
   constructor(private loginService: LoginService, private petOwnerService: PetOwnerService) {
     loginService.getProfile().subscribe(data => {
       if (this.loginService.isPetOwner(data.profile)) {
         this.profile = data.profile;
         this.matches = this.profile.matches;
+        this.isLoading = false;
       }})
   }
 

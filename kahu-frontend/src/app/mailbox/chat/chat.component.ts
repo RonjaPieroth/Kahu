@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, ViewChild} from '@angular/core';
 import {ChatService} from '../../services/chat.service';
 import {Chat} from '../../models/chat';
 import {Message} from '../../models/message';
@@ -16,18 +16,22 @@ export class ChatComponent implements OnChanges {
 
   @Input() chat?: Chat
   @Input() owningProfile?: Shelter | PetOwner;
+  @ViewChild('chatBox') chatBox!: ElementRef;
   newMessage = new FormControl("", [Validators.required]);
   messages: Message[] = [];
   subscription!: Subscription;
+  isStarting: boolean = true;
 
   constructor(private chatService: ChatService
   ) {
-    this.subscription = interval(10000).subscribe(()=> {this.getChatMessages();
+    this.subscription = interval(10000).subscribe(() => {
+      this.getChatMessages();
     });
   }
 
   ngOnChanges() {
     this.getChatMessages();
+    this.scrollToBottom();
   }
 
   sendMessage(): void {
@@ -36,17 +40,41 @@ export class ChatComponent implements OnChanges {
       console.log(data);
       this.newMessage.reset();
       this.getChatMessages();
+      this.scrollToBottom();
     });
   }
 
+
+  ngAfterViewChecked(): void {
+    if (this.isStarting && this.chatBox) {
+      this.scrollToBottom();
+      this.isStarting = false;
+    }
+  }
+
+  isEqual(originalMessages: Message[], newMessages: Message[]) {
+    return JSON.stringify(originalMessages) === JSON.stringify(newMessages);
+  }
+
+
   getChatMessages(): void {
     if (this.chat) {
-      this.chatService.getChatMessages(this.chat).subscribe(data => this.messages = data);
+      this.chatService.getChatMessages(this.chat).subscribe(data => {
+        if (!this.isEqual(this.messages, data)) {
+          this.messages = data;
+        }
+      });
     }
   }
 
   isOwningProfile(senderId: string): boolean {
     return senderId === this.owningProfile?.id;
+  }
+
+  scrollToBottom(): void {
+    setTimeout(() => {
+      this.chatBox.nativeElement.scrollTop = this.chatBox.nativeElement.scrollHeight;
+    }, 100);
   }
 
   createMessage(): Message {
@@ -63,7 +91,8 @@ export class ChatComponent implements OnChanges {
     return message;
   }
 
-  ngOnDestroy(): void{
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
 }

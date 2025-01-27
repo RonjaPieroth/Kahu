@@ -22,8 +22,6 @@ export class ChatElementComponent implements OnChanges{
   @Input() owningProfile?: Shelter | PetOwner;
   chatpartner?: Shelter | PetOwner;
   pet?: Pet;
-  lastMessage?: Message;
-  subscription!: Subscription;
 
   constructor(
     private shelterService: ShelterService,
@@ -31,12 +29,10 @@ export class ChatElementComponent implements OnChanges{
     private petService: PetService,
     private loginService: LoginService,
     private chatService: ChatService) {
-    this.subscription = interval(2000).subscribe(()=> this.loadLastMessage());
   }
 
   ngOnChanges(): void {
     if (this.chat && this.owningProfile){
-      this.loadLastMessage();
       if (this.chat.subject){
         this.petService.getPetByID(this.chat.subject.toString()).subscribe(data => this.pet = data);
       }
@@ -47,15 +43,8 @@ export class ChatElementComponent implements OnChanges{
     }
   }
 
-  loadLastMessage(): void{
-    if (this.chat && this.owningProfile){
-      this.chatService.getLastMessage(this.chat).subscribe(data => this.lastMessage = data);
-    }
-  }
 
-  ngOnDestroy(): void{
-      this.subscription.unsubscribe();
-  }
+
 
 
 }

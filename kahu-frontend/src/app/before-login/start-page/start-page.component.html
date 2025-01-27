@@ -22,11 +22,18 @@
   </div>
 </div>
 <ng-template #loggedInTemplate>
+  <div *ngIf="isLoading" class="screen container">
+    <div class="spinner-grow text-bg-light" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <ng-container *ngIf="!isLoading">
   <div *ngIf="loggedInProfile; else createProfil">
-    <app-dashboard></app-dashboard>
+    <app-dashboard [profile]="loggedInProfile"></app-dashboard>
   </div>
   <ng-template #createProfil>
 <app-create-profile (createdProfile)="setUser()"></app-create-profile>
   </ng-template>
+  </ng-container>
 </ng-template>
 

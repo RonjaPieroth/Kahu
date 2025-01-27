@@ -1,13 +1,24 @@
 <div class="container screen">
-<div class="row justify-content-around mt-5">
-<div class="card col-12 col-sm-4 col-md-2 mb-5" style="width: 18rem;" *ngFor="let match of matches">
- <div class="d-flex justify-content-end">
-    <i class="bi bi-x-circle" style="color: red;" (click)="removeMatch(match)"></i>
- </div>
-  <img src="{{match.pictures[0]}}" class=" card-img" alt="{{match.name}}">
-  <div class="card-body">
-    <h5 class="card-title text-center cursor" [routerLink]="['/profile/pet', match.id]">{{ match.name }}</h5>
+  <div *ngIf="isLoading">
+    <div class="spinner-grow text-bg-light" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
-</div>
-</div>
+  <ng-container *ngIf="!isLoading">
+    <div class="row justify-content-around mt-5" *ngIf="matches.length>0">
+      <div class="card col-12 col-sm-4 col-md-2 mb-5" style="width: 18rem;" *ngFor="let match of matches">
+        <div class="d-flex justify-content-end">
+          <i class="bi bi-x-circle" style="color: red;" (click)="removeMatch(match)"></i>
+        </div>
+        <img src="{{match.pictures[0]}}" class=" card-img" alt="{{match.name}}">
+        <div class="card-body">
+          <h5 class="card-title text-center cursor" [routerLink]="['/profile/pet', match.id]">{{ match.name }}</h5>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="matches.length <1">
+      <p class="text-center pt-3">You haven't liked any pets yet. Why don't you browse a bit and see if you find your
+        future fur baby?</p>
+    </div>
+  </ng-container>
 </div>

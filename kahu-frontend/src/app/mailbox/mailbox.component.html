@@ -1,14 +1,32 @@
 <div class="container screen" style="height: 100vh;">
-  <div class="row" *ngIf="chats.length > 0; else noChats">
-  <app-chat-overview class="col-4" [chats]="chats" [owningProfile]="activeUser" (changeChatEvent)="changeActiveChat($event)"></app-chat-overview>
-    <div class="card col" style="height: 80vh;">
-      <h5 class="card-header p-3 text-center" *ngIf="chatpartner">{{chatpartner.name}} <span  *ngIf="pet">- {{pet.name}}</span></h5>
-      <div class="card-body">
-        <app-chat [owningProfile]="activeUser" [chat]="activeChat"></app-chat>
-      </div>
+  <div *ngIf="isLoading">
+    <div class="spinner-grow text-bg-light" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
   </div>
-  <ng-template #noChats>
-    <p class="text-center p-5 fw-bolder">You don't have any chats yet!</p>
-  </ng-template>
+  <ng-container *ngIf="!isLoading">
+    <div class="row" *ngIf="chats.length > 0; else noChats">
+      <app-chat-overview class="col-4" [chats]="chats" [owningProfile]="activeUser"
+                         (changeChatEvent)="changeActiveChat($event)"></app-chat-overview>
+      <div class="card col" style="height: 80vh;">
+        <h5 class="card-header p-3 text-center" *ngIf="chatpartner">
+          <a target="_blank" class="text-decoration-none text-black" [routerLink]="['/profile/shelter', chatpartner.id]" *ngIf="chatPartnerIsShelter">
+          <span>{{ chatpartner.name}} </span>
+          </a>
+          <a target="_blank" class="text-decoration-none text-black" [routerLink]="['/profile/kahu', chatpartner.id]" *ngIf="!chatPartnerIsShelter">
+            <span>{{ chatpartner.name}} </span>
+          </a>
+          <a target="_blank" class="text-decoration-none text-black" [routerLink]="['/profile/pet', pet.id]" *ngIf="pet">
+            <span>- {{ pet.name }}</span>
+          </a>
+        </h5>
+        <div class="card-body">
+          <app-chat [owningProfile]="activeUser" [chat]="activeChat"></app-chat>
+        </div>
+      </div>
+    </div>
+    <ng-template #noChats>
+      <p class="text-center p-5 fw-bolder">You don't have any chats yet!</p>
+    </ng-template>
+  </ng-container>
 </div>

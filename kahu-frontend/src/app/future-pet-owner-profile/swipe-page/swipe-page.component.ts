@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Pet} from '../../models/pet';
 import {PetOwner} from '../../models/pet-owner';
 import {PetService} from '../../services/pet.service';
@@ -16,17 +16,22 @@ export class SwipePageComponent {
   allPets: Pet[] = [];
   profile?: PetOwner;
   pets: Pet[] = [];
+  isLoading: boolean = true;
 
   constructor(private petService: PetService, private loginService: LoginService, private petOwnerService: PetOwnerService) {
     loginService.getProfile().subscribe(data => {
       if (this.loginService.isPetOwner(data.profile)) {
         this.profile = data.profile;
       }
-      petService.getAllPets().subscribe(data => {this.allPets = data; this.chooseRandomPet();});
+      petService.getAllPets().subscribe(data => {
+        this.allPets = data;
+        this.chooseRandomPet();
+        this.isLoading = false;
+      });
     })
   }
 
-  loadMatchablePets(): Pet[]{
+  loadMatchablePets(): Pet[] {
     return this.allPets.filter(
       pet => !this.profile?.matches.some(match => match.id === pet.id)
     );
@@ -38,12 +43,12 @@ export class SwipePageComponent {
     this.pet = this.pets[randomIndex];
   }
 
-  isMatch():void{
+  isMatch(): void {
     this.profile?.matches.push(this.pet!);
-    this.petOwnerService.modifyProfil(this.profile!).subscribe(()=> this.chooseRandomPet());
+    this.petOwnerService.modifyProfil(this.profile!).subscribe(() => this.chooseRandomPet());
   }
 
-  isNoMatch(): void{
+  isNoMatch(): void {
     this.chooseRandomPet();
   }
 

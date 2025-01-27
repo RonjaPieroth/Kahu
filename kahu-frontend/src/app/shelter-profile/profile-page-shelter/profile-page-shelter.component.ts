@@ -15,6 +15,7 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class ProfilePageShelterComponent {
 
+
   shelterProfile?: Shelter;
   visitingProfile?: Shelter | PetOwner;
   urlID?: string | null;
@@ -53,6 +54,8 @@ export class ProfilePageShelterComponent {
       }).subscribe(data => {
         console.log(data);
         this.message.reset();
+        const closeButton = document.getElementById("closeButton")
+        closeButton!.click();
         this.router.navigate(["/mailbox"])
       });
   }

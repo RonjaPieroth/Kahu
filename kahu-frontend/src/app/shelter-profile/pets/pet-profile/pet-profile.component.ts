@@ -21,6 +21,7 @@ export class PetProfileComponent {
   message = new FormControl("", [Validators.required]);
 
 
+
   constructor(private petService: PetService, private route: ActivatedRoute, private loginService: LoginService, private router: Router, private chatService: ChatService) {
     const id = route.snapshot.paramMap.get("id");
 
@@ -50,8 +51,10 @@ export class PetProfileComponent {
         recipientId: this.pet.shelter.id,
         petId: this.pet.id
       }).subscribe(data => {
+        const closeButton = document.getElementById("closeButton")
         console.log(data);
         this.message.reset();
+        closeButton!.click();
         this.router.navigate(["/mailbox"])
       });
   }

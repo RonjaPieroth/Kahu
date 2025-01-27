@@ -23,6 +23,7 @@ export class MailboxComponent{
   chatpartner?: Shelter | PetOwner;
   pet?: Pet;
   subscription!: Subscription;
+  isLoading: boolean = true;
 
 
   constructor(
@@ -44,6 +45,7 @@ export class MailboxComponent{
         this.setPet();
         this.subscription = interval(5000).subscribe(() => this.refreshChats());
         }
+        this.isLoading = false;
       })}
     });
   }
@@ -87,6 +89,10 @@ export class MailboxComponent{
 
   isEqual(originalChats: Chat[], newChats: Chat[]): boolean{
     return JSON.stringify(originalChats) === JSON.stringify(newChats);
+  }
+
+  get chatPartnerIsShelter(): boolean{
+    return !this.loginService.isPetOwner(this.chatpartner);
   }
 
   ngOnDestroy(): void{

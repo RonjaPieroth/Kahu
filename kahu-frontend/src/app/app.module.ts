@@ -15,7 +15,7 @@ import {OwnerProfilFormComponent} from './future-pet-owner-profile/owner-profil-
 import {HttpClientModule} from '@angular/common/http';
 import {NgOptimizedImage} from '@angular/common';
 import {MessageFormComponent} from './mailbox/message-form/message-form.component';
-import {DashboardComponent} from './future-pet-owner-profile/dashboard/dashboard.component';
+import {DashboardComponent} from './Dashboard/dashboard/dashboard.component';
 import {MatchesComponent} from './future-pet-owner-profile/matches/matches.component';
 import {SwipePageComponent} from './future-pet-owner-profile/swipe-page/swipe-page.component';
 import {NotificationsComponent} from './future-pet-owner-profile/notifications/notifications.component';

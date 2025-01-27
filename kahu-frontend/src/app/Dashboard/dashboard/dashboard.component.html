@@ -1,0 +1,11 @@
+<div class="screen container ">
+  <h2 *ngIf="profile" class="text-center p-1 pb-3 pb-sm-0 p-sm-4">Welcome {{ profile.name }}!</h2>
+  <div class="row gap-0 gap-sm-2-2 p-0 p-sm-5 d-flex justify-content-center align-items-center">
+    <div class="col-12 col-sm-4 pe-5 pe-sm-0 ps-5 ps-sm-0">
+      <img src="quote-pics/{{image}}" alt="pet" class="img-fluid rounded-4 shadow-lg">
+    </div>
+    <div class="col-12 col-sm-6 d-flex align-items-center">
+      <p class="text-center">{{quote}}</p>
+    </div>
+  </div>
+</div>
