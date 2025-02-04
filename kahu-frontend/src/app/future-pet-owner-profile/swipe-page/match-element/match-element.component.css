@@ -13,3 +13,13 @@
 .card{
   max-width: 50%;
 }
+
+@media (max-width: 991px) {
+  .card{
+    max-width: 90%;
+  }
+
+  .modal-dialog.modal-80 {
+    max-width: 100%;
+  }
+}
