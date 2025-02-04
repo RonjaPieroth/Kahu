@@ -11,8 +11,9 @@
 </div>
 
 </div>
-<div  class="position-absolute bottom-0 w-100 pb-3 d-flex">
-  <textarea type="text" class="w-75 form-control rounded-4" rows="1" [formControl]="newMessage"></textarea>
+
+<div id="input" class="position-absolute bottom-0 w-100 pb-2 pb-3 d-flex">
+  <textarea  type="text" class="w-75 form-control rounded-4 form-control-sm" rows="1" [formControl]="newMessage"></textarea>
   <i class="bi bi-envelope ps-3 fs-3 cursor" (click)="sendMessage()"></i>
 </div>
 </div>

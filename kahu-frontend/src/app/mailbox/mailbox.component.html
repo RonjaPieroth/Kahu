@@ -6,10 +6,12 @@
   </div>
   <ng-container *ngIf="!isLoading">
     <div class="row" *ngIf="chats.length > 0; else noChats">
-      <app-chat-overview class="col-4" [chats]="chats" [owningProfile]="activeUser"
+      <app-chat-overview id="chatOverview" class="col-lg-4 col-12" [chats]="chats" [owningProfile]="activeUser"
                          (changeChatEvent)="changeActiveChat($event)"></app-chat-overview>
-      <div class="card col" style="height: 80vh;">
-        <h5 class="card-header p-3 text-center" *ngIf="chatpartner">
+      <div id="chat" class="card col chat-overview-open" style="max-height: 80vh;">
+        <div class="card-header p-3  d-flex align-items-center">
+        <i class="bi bi-arrow-left me-2 back-icon" (click)="changeVisibility()"></i>
+        <h5 class="text-center m-0 flex-grow-1" *ngIf="chatpartner">
           <a target="_blank" class="text-decoration-none text-black" [routerLink]="['/profile/shelter', chatpartner.id]" *ngIf="chatPartnerIsShelter">
           <span>{{ chatpartner.name}} </span>
           </a>
@@ -20,6 +22,7 @@
             <span>- {{ pet.name }}</span>
           </a>
         </h5>
+        </div>
         <div class="card-body">
           <app-chat [owningProfile]="activeUser" [chat]="activeChat"></app-chat>
         </div>

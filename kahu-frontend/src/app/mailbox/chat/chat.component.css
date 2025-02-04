@@ -1,4 +1,4 @@
-.chat-box{
+.chat-box {
   position: absolute;
   top: 0;
   left: 0;
@@ -11,8 +11,22 @@
   gap: 10px;
 }
 
-.chat-container{
+.chat-container {
   position: relative;
   height: 70vh;
+}
+
+
+@media (max-width: 991px) {
+
+  .form-control {
+    font-size: 10px;
+  }
+
+
+  #input {
+    padding: 5px;
+    background-color: var(--beige-color);
+  }
 
 }

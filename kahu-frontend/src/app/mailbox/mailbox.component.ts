@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {PetOwner} from '../models/pet-owner';
 import {Shelter} from '../models/shelter';
 import {ChatService} from '../services/chat.service';
@@ -9,6 +9,7 @@ import {ShelterService} from '../services/shelter.service';
 import {PetOwnerService} from '../services/pet-owner.service';
 import {PetService} from '../services/pet.service';
 import {interval, Subscription} from 'rxjs';
+import {ChatComponent} from './chat/chat.component';
 
 
 @Component({
@@ -17,6 +18,7 @@ import {interval, Subscription} from 'rxjs';
   styleUrl: './mailbox.component.css'
 })
 export class MailboxComponent{
+  @ViewChild(ChatComponent) chatComponent!: ChatComponent;
   activeUser?: PetOwner | Shelter;
   chats: Chat[] = [];
   activeChat?: Chat;
@@ -77,9 +79,17 @@ export class MailboxComponent{
     }
   }
 
+  changeVisibility(){
+    document.getElementById("chatOverview")!.classList.toggle("chat-details-open");
+    document.getElementById("chat")!.classList.toggle("chat-overview-open");
+  }
+
   changeActiveChat(chat: Chat): void{
-    this.activeChat=chat;
+    if (this.activeChat === chat){
+      this.chatComponent.scrollToBottom();
+    } else {this.activeChat=chat;}
     this.reloadChatTitle();
+    this.changeVisibility();
   }
 
   reloadChatTitle(): void {

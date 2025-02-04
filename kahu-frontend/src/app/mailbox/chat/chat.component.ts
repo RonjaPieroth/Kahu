@@ -44,7 +44,6 @@ export class ChatComponent implements OnChanges {
     });
   }
 
-
   ngAfterViewChecked(): void {
     if (this.isStarting && this.chatBox) {
       this.scrollToBottom();
@@ -55,7 +54,6 @@ export class ChatComponent implements OnChanges {
   isEqual(originalMessages: Message[], newMessages: Message[]) {
     return JSON.stringify(originalMessages) === JSON.stringify(newMessages);
   }
-
 
   getChatMessages(): void {
     if (this.chat) {
