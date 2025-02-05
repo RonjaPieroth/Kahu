@@ -12,33 +12,26 @@ export class FilterService {
   }
 
   filterByAge(pets: Pet[], minAge?: number, maxAge?: number): Pet[] {
-    let filteredPets = pets;
     if (minAge && maxAge) {
-      filteredPets = filteredPets.filter(pet => pet.age >= minAge && pet.age <= maxAge)
-    } else if (minAge) {
-      filteredPets = filteredPets.filter(pet => pet.age >= minAge)
-    } else if (maxAge) {
-      filteredPets = filteredPets.filter(pet => pet.age <= maxAge)
+     return pets.filter(pet => pet.age >= minAge && pet.age <= maxAge)}
+    if (minAge) {
+     return pets.filter(pet => pet.age >= minAge)}
+    if (maxAge) {
+     return  pets.filter(pet => pet.age <= maxAge)
     }
-    return filteredPets;
+    return pets;
   }
 
   filterByAnimalType(pets: Pet[], animalType: AnimalType): Pet[] {
-    let filteredPets = pets;
-    filteredPets.filter(pet => pet.animalType == animalType);
-    return filteredPets;
+     return pets.filter(pet => pet.animalType == animalType);
   }
 
   filterByGender(pets: Pet[], gender: "Male" | "Female"): Pet[] {
-    let filteredPets = pets;
-    filteredPets.filter(pet => pet.gender === gender);
-    return filteredPets;
+   return pets.filter(pet => pet.gender === gender);
   }
 
   filterByAdoptionType(pets: Pet[], adoptionType: PetOwnershipType): Pet[] {
-    let filteredPets = pets;
-    filteredPets.filter(pet => pet.lookingFor.includes(adoptionType))
-    return filteredPets;
+    return pets.filter(pet => pet.lookingFor.includes(adoptionType))
   }
 
   /* filterByDistance(pets: Pet[], location: string, maxDistance: number): Pet[] {
