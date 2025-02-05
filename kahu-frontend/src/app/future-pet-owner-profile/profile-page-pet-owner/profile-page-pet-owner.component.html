@@ -51,14 +51,8 @@
 
 
   <div class="row">
-    <div class="col-12 col-sm-4 mb-2">
-      <img src="example-pics/example-1.jpg" class="img-fluid rounded shadow img-uniform img-zoom">
-    </div>
-    <div class="col-12 col-sm-4 mb-2">
-      <img src="example-pics/example-4.jpg" class="img-fluid rounded shadow img-uniform img-zoom">
-    </div>
-    <div class="col-12 col-sm-4 mb-3">
-      <img src="example-pics/example-3.jpg" class="img-fluid rounded img-uniform img-zoom">
+    <div class="col-12 col-sm-4 mb-2" *ngFor="let picture of petOwnerProfile.pictures">
+      <img src="{{picture}}" class="img-fluid rounded shadow img-uniform img-zoom">
     </div>
   </div>
 </div>

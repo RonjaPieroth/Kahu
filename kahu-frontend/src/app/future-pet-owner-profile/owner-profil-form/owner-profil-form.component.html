@@ -115,6 +115,16 @@
         </label>
       </div>
     </div>
+      <div class="mb-3">
+        <p>Feel free to upload some pictures of your home</p>
+        <div formArrayName="pictures">
+          <div *ngFor="let picture of picturesArray.controls; let i = index">
+            <input type="text" [formControlName]="i" placeholder="Enter picture URL" class="form-control">
+            <button type="button" (click)="removePicture(i)">Remove</button>
+          </div>
+          <button type="button" (click)="addPicture()">Add Picture</button>
+        </div>
+      </div>
     </div>
     <hr>
     <p class="fw-bold mb-3">Last but not least - What are you looking for?</p>

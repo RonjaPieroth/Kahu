@@ -19,8 +19,8 @@ export interface PetOwner {
   typeOfHome: TypeOfHome
   residentialArea: ResidentialArea
   homeSize: number;
+  pictures: string[];
   hasGarden: boolean;
-  /*livingSituationPicture: string[];*/
   lookingFor: PetOwnershipType[];
   matches: Pet[];
 }

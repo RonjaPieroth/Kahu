@@ -47,6 +47,7 @@ export class OwnerProfilFormComponent {
         homeSize: ["", [Validators.required, Validators.min(1)]],
         hasGarden: ["", Validators.required],
         lookingFor: this.fb.array([], minSelectedCheckboxes(1)),
+        pictures: this.fb.array([]),
         matches: [[]]
       }
     );
@@ -80,12 +81,26 @@ export class OwnerProfilFormComponent {
         newValues.lookingFor.forEach(value => {
           lookingForArray.push(this.fb.control(value));
         });
-
-      }
+        this.profile.pictures.forEach((picture: string) => {
+          this.picturesArray.push(this.fb.control(picture, Validators.required));
+        });}
       if (this.login) {
         this.profileForm.patchValue({login: {id: this.login.id, mail: this.login.mail, password: this.login.password}});
       }
+
     });
+  }
+
+  get picturesArray(): FormArray {
+    return this.profileForm.get('pictures') as FormArray;
+  }
+
+  addPicture(): void {
+    this.picturesArray.push(this.fb.control(''));
+  }
+
+  removePicture(index: number): void {
+    this.picturesArray.removeAt(index);
   }
 
   onCheckboxChange(event: Event) {

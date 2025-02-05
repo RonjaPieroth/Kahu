@@ -54,7 +54,7 @@ export class PetFormComponent {
     this.loginService.getProfile().subscribe(data => {
       if (data.profile && !this.loginService.isPetOwner(data.profile)) {
         this.shelterProfile = data.profile;
-        if (!this.petProfile) {
+        if (this.petProfile) {
           this.profileForm.patchValue({shelter: {id: this.shelterProfile.id}});
         }
       }
