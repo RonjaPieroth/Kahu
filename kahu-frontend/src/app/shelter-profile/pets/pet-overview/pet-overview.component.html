@@ -8,8 +8,7 @@
   <div class="card col-12 col-sm-4 col-md-3 col-lg-2" style="max-width: 18rem;" *ngFor="let pet of pets">
     <img src="{{pet.pictures[0]}}" class="card-img mt-2" alt="{{pet.name}}">
     <div class="card-body">
-      <h5 class="card-title text-center">{{ pet.name }}</h5>
-      <a [routerLink]="['/profile/pet', pet.id]" class="btn btn-primary">go to profile</a>
+      <h5 class="card-title text-center cursor" [routerLink]="['/profile/pet', pet.id]">{{ pet.name }}</h5>
     </div>
   </div>
 </div>
