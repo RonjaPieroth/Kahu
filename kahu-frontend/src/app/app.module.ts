@@ -31,6 +31,7 @@ import {ChatComponent} from './mailbox/chat/chat.component';
 import {MailboxComponent} from './mailbox/mailbox.component';
 import {ChatElementComponent} from './mailbox/chat-element/chat-element.component';
 import {ChatOverviewComponent} from './mailbox/chat-overview/chat-overview.component';
+import { FilterFormComponent } from './future-pet-owner-profile/swipe-page/filter-form/filter-form.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import {ChatOverviewComponent} from './mailbox/chat-overview/chat-overview.compo
     ChatComponent,
     MailboxComponent,
     ChatElementComponent,
-    ChatOverviewComponent
+    ChatOverviewComponent,
+    FilterFormComponent
   ],
   imports: [
     BrowserModule,

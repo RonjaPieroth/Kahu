@@ -4,9 +4,26 @@
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
-    <ng-container *ngIf=" pets.length < 1 && !isLoading">
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterFormModal">+filter</button>
+  </div>
+  <ng-container *ngIf=" pets.length < 1 && !isLoading">
       <p>There are no more pets to swipe. Check in later or change your filter.</p>
     </ng-container>
     <app-match-element [pet]="pet" (matchEvent)="isMatch()" (noMatchEvent)="isNoMatch()"
                        *ngIf="pets.length > 0 && pet"></app-match-element>
   </div>
+
+<div class="modal fade" id="filterFormModal" tabindex="-1" aria-labelledby="filterFormModal" aria-hidden="true">
+  <div class="modal-dialog modal-80">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="filterFormModalLabel">Pick a filter:</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-filter-form></app-filter-form>
+      </div>
+    </div>
+  </div>
+</div>
