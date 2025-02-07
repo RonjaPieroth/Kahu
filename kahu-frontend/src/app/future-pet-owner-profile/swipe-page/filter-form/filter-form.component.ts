@@ -30,6 +30,13 @@ export class FilterFormComponent {
   animalType?: AnimalType;
   adoptionType?: PetOwnershipType;
 
+  get ageFilterValid(): boolean{
+    if (this.minAgeControl.value && this.maxAgeControl.value && this.minAgeControl.value > this.maxAgeControl.value){
+      return false;
+    }
+    return true;
+  }
+
 
   constructor() {
   }
