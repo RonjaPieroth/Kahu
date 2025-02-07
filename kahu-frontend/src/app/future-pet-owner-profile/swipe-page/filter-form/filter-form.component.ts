@@ -19,7 +19,7 @@ export class FilterFormComponent {
   @ViewChild("adoptionTypeTemplate", {static: true}) adoptionTypeTemplate!: TemplateRef<any>;
 
   minAgeControl = new FormControl("",[Validators.min(0)]);
-  maxAgeControl =  new FormControl("", [Validators.max(100)]);
+  maxAgeControl =  new FormControl("", [Validators.min(0)]);
   genderControl = new FormControl("");
   animalTypeControl = new FormControl("");
   adoptionTypeControl = new FormControl("");
