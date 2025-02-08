@@ -1,0 +1,11 @@
+@media (max-width: 576px) {
+  .custom-buttons {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .custom-buttons button {
+    flex: 1 1 calc(50% - 10px);
+    max-width: 45%;
+  }
+}
