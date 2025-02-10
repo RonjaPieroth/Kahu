@@ -4,24 +4,24 @@
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
-  <div class="d-flex justify-content-end p-2">
-    <button class="btn btn-primary me-4" *ngIf="minAge">
-      <span class="me-2">min-age: {{ minAge }}</span>
+  <div class="d-flex justify-content-end p-2 flex-wrap">
+    <button class="btn btn-primary me-4 mb-1" *ngIf="minAge">
+      <span class="me-2">minimum age: {{ minAge }}</span>
       <i class="bi bi-x" (click)="minAge=undefined; filterPets();"></i>
     </button>
-    <button class="btn btn-primary me-4" *ngIf="maxAge">
-      <span class="me-2">max-age: {{ maxAge }}</span>
+    <button class="btn btn-primary me-4 mb-1" *ngIf="maxAge">
+      <span class="me-2">maximum age: {{ maxAge }}</span>
       <i class="bi bi-x" (click)="maxAge= undefined; filterPets();"></i>
     </button>
-    <button class="btn btn-primary me-4" *ngIf="gender">
+    <button class="btn btn-primary me-4 mb-1" *ngIf="gender">
       <span class="me-2">{{ gender }}</span>
       <i class="bi bi-x" (click)="gender=undefined; filterPets();"></i>
     </button>
-    <button class="btn btn-primary me-4" *ngIf="animalType">
+    <button class="btn btn-primary me-4 mb-1" *ngIf="animalType">
       <span class="me-2">{{ animalType }}</span>
       <i class="bi bi-x" (click)="animalType=undefined; filterPets();"></i>
     </button>
-    <button class="btn btn-primary me-4" *ngIf="adoptionType">
+    <button class="btn btn-primary me-4 mb-1" *ngIf="adoptionType">
       <span class="me-2">{{ adoptionType }}</span>
       <i class="bi bi-x" (click)="adoptionType=undefined; filterPets();"></i>
     </button>
