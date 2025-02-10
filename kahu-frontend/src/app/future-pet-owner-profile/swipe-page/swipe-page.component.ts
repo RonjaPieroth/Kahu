@@ -6,6 +6,7 @@ import {LoginService} from '../../services/login.service';
 import {PetOwnerService} from '../../services/pet-owner.service';
 import {AnimalType} from '../../models/enums/animal-type';
 import {PetOwnershipType} from '../../models/enums/pet-ownership-type';
+import {FilterService} from '../../services/filter.service';
 
 @Component({
   selector: 'app-swipe-page',
@@ -18,6 +19,7 @@ export class SwipePageComponent {
   allPets: Pet[] = [];
   profile?: PetOwner;
   pets: Pet[] = [];
+  filteredPets: Pet[] = [];
   isLoading: boolean = true;
 
   minAge?: number;
@@ -26,13 +28,14 @@ export class SwipePageComponent {
   animalType?: AnimalType;
   adoptionType?: PetOwnershipType;
 
-  constructor(private petService: PetService, private loginService: LoginService, private petOwnerService: PetOwnerService) {
+  constructor(private petService: PetService, private loginService: LoginService, private petOwnerService: PetOwnerService, private filterService: FilterService) {
     loginService.getProfile().subscribe(data => {
       if (this.loginService.isPetOwner(data.profile)) {
         this.profile = data.profile;
       }
       petService.getAllPets().subscribe(data => {
         this.allPets = data;
+        this.filteredPets = data;
         this.chooseRandomPet();
         this.isLoading = false;
       });
@@ -40,7 +43,7 @@ export class SwipePageComponent {
   }
 
   loadMatchablePets(): Pet[] {
-    return this.allPets.filter(
+    return this.filteredPets.filter(
       pet => !this.profile?.matches.some(match => match.id === pet.id)
     );
   }
@@ -70,18 +73,39 @@ export class SwipePageComponent {
     if (this.maxAge && this.minAge && this.minAge > this.maxAge){
       this.minAge = undefined;
     }
+    this.filterPets();
   }
 
   setGender(gender: "Male"|"Female"): void{
     this.gender = gender;
+    this.filterPets();
   }
 
   setAnimalType(animalType: AnimalType): void{
     this.animalType = animalType;
+    this.filterPets();
   }
 
   setAdoptionType(adoptionType: PetOwnershipType): void{
     this.adoptionType = adoptionType;
+    this.filterPets();
   }
 
+  filterPets():void{
+    let filteredPets: Pet[]= this.allPets;
+    if (this.maxAge || this.minAge){
+      filteredPets = this.filterService.filterByAge(filteredPets, this.minAge, this.maxAge);
+    }
+    if (this.gender){
+      filteredPets = this.filterService.filterByGender(filteredPets, this.gender);
+    }
+    if (this.adoptionType){
+      filteredPets = this.filterService.filterByAdoptionType(filteredPets, this.adoptionType);
+    }
+    if (this.animalType){
+      filteredPets = this.filterService.filterByAnimalType(filteredPets, this.animalType);
+    }
+    this.filteredPets = filteredPets;
+    this.chooseRandomPet();
+  }
 }
