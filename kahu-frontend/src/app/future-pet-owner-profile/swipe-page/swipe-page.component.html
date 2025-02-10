@@ -7,23 +7,23 @@
   <div class="d-flex justify-content-end p-2">
     <button class="btn btn-primary me-4" *ngIf="minAge">
       <span class="me-2">min-age: {{ minAge }}</span>
-      <i class="bi bi-x" (click)="minAge=undefined"></i>
+      <i class="bi bi-x" (click)="minAge=undefined; filterPets();"></i>
     </button>
     <button class="btn btn-primary me-4" *ngIf="maxAge">
       <span class="me-2">max-age: {{ maxAge }}</span>
-      <i class="bi bi-x" (click)="maxAge= undefined"></i>
+      <i class="bi bi-x" (click)="maxAge= undefined; filterPets();"></i>
     </button>
     <button class="btn btn-primary me-4" *ngIf="gender">
       <span class="me-2">{{ gender }}</span>
-      <i class="bi bi-x" (click)="gender=undefined"></i>
+      <i class="bi bi-x" (click)="gender=undefined; filterPets();"></i>
     </button>
     <button class="btn btn-primary me-4" *ngIf="animalType">
       <span class="me-2">{{ animalType }}</span>
-      <i class="bi bi-x" (click)="animalType=undefined"></i>
+      <i class="bi bi-x" (click)="animalType=undefined; filterPets();"></i>
     </button>
     <button class="btn btn-primary me-4" *ngIf="adoptionType">
       <span class="me-2">{{ adoptionType }}</span>
-      <i class="bi bi-x" (click)="adoptionType=undefined"></i>
+      <i class="bi bi-x" (click)="adoptionType=undefined; filterPets();"></i>
     </button>
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterFormModal">+filter</button>
   </div>
