@@ -1,18 +1,38 @@
 <div class="container screen" *ngIf="pets">
-    <div *ngIf="isLoading">
-      <div class="spinner-grow text-bg-light" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+  <div *ngIf="isLoading">
+    <div class="spinner-grow text-bg-light" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
+  </div>
   <div class="d-flex justify-content-end p-2">
+    <button class="btn btn-primary me-4" *ngIf="minAge">
+      <span class="me-2">min-age: {{ minAge }}</span>
+      <i class="bi bi-x" (click)="minAge=undefined"></i>
+    </button>
+    <button class="btn btn-primary me-4" *ngIf="maxAge">
+      <span class="me-2">max-age: {{ maxAge }}</span>
+      <i class="bi bi-x" (click)="maxAge= undefined"></i>
+    </button>
+    <button class="btn btn-primary me-4" *ngIf="gender">
+      <span class="me-2">{{ gender }}</span>
+      <i class="bi bi-x" (click)="gender=undefined"></i>
+    </button>
+    <button class="btn btn-primary me-4" *ngIf="animalType">
+      <span class="me-2">{{ animalType }}</span>
+      <i class="bi bi-x" (click)="animalType=undefined"></i>
+    </button>
+    <button class="btn btn-primary me-4" *ngIf="adoptionType">
+      <span class="me-2">{{ adoptionType }}</span>
+      <i class="bi bi-x" (click)="adoptionType=undefined"></i>
+    </button>
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterFormModal">+filter</button>
   </div>
   <ng-container *ngIf=" pets.length < 1 && !isLoading">
-      <p>There are no more pets to swipe. Check in later or change your filter.</p>
-    </ng-container>
-    <app-match-element [pet]="pet" (matchEvent)="isMatch()" (noMatchEvent)="isNoMatch()"
-                       *ngIf="pets.length > 0 && pet"></app-match-element>
-  </div>
+    <p>There are no more pets to swipe. Check in later or change your filter.</p>
+  </ng-container>
+  <app-match-element [pet]="pet" (matchEvent)="isMatch()" (noMatchEvent)="isNoMatch()"
+                     *ngIf="pets.length > 0 && pet"></app-match-element>
+</div>
 
 <div class="modal fade" id="filterFormModal" tabindex="-1" aria-labelledby="filterFormModal" aria-hidden="true">
   <div class="modal-dialog modal-80">
@@ -22,7 +42,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <app-filter-form></app-filter-form>
+        <app-filter-form
+          (ageEvent)="setAge($event)"
+          (genderEvent)="setGender($event)"
+          (animalTypeEvent)="setAnimalType($event)"
+          (adoptionTypeEvent)="setAdoptionType($event)">
+        </app-filter-form>
       </div>
     </div>
   </div>

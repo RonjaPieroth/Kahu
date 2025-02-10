@@ -1,4 +1,4 @@
-import {Component, TemplateRef, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Output, TemplateRef, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AnimalType} from '../../../models/enums/animal-type';
 import {PetOwnershipType} from '../../../models/enums/pet-ownership-type';
@@ -24,11 +24,29 @@ export class FilterFormComponent {
   animalTypeControl = new FormControl("");
   adoptionTypeControl = new FormControl("");
 
-  minAge?: number;
-  maxAge?: number;
-  gender?: "Male" | "Female";
-  animalType?: AnimalType;
-  adoptionType?: PetOwnershipType;
+
+  @Output() ageEvent = new EventEmitter<{minAge?: number, maxAge?: number}>();
+  @Output() genderEvent = new EventEmitter;
+  @Output() animalTypeEvent = new EventEmitter;
+  @Output() adoptionTypeEvent = new EventEmitter;
+
+  setAgeFilter():void{
+    this.ageEvent.emit({
+      minAge: this.minAgeControl.value? parseInt(this.minAgeControl.value) : undefined,
+      maxAge: this.maxAgeControl.value? parseInt(this.maxAgeControl.value) : undefined})
+  }
+
+  setGenderFilter(): void{
+    this.genderEvent.emit(this.genderControl.value);
+  }
+
+  setAnimalTypeFilter(): void{
+    this.animalTypeEvent.emit(this.animalTypeControl.value);
+  }
+
+  setAdoptionTypeFilter(): void{
+    this.adoptionTypeEvent.emit(this.adoptionTypeControl.value);
+  }
 
   get ageFilterValid(): boolean{
     if (this.minAgeControl.value && this.maxAgeControl.value && this.minAgeControl.value > this.maxAgeControl.value){
