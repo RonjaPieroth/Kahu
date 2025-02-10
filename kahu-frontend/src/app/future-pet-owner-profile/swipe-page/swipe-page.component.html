@@ -28,7 +28,10 @@
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterFormModal">+filter</button>
   </div>
   <ng-container *ngIf=" pets.length < 1 && !isLoading">
-    <p>There are no more pets to swipe. Check in later or change your filter.</p>
+    <p class="text-center">There are no more pets to swipe. Check in later, change your filters or give pets you voted out a second chance.</p>
+    <div class="d-flex justify-content-center pt-3">
+    <button class="btn btn-primary" (click)="resetNoMatchList()">Give 2nd chance❤️</button>
+    </div>
   </ng-container>
   <app-match-element [pet]="pet" (matchEvent)="isMatch()" (noMatchEvent)="isNoMatch()"
                      *ngIf="pets.length > 0 && pet"></app-match-element>

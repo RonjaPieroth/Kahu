@@ -48,6 +48,11 @@ export class SwipePageComponent {
     );
   }
 
+  resetNoMatchList(): void{
+    this.profile!.noMatchIds = [];
+    this.petOwnerService.modifyProfil(this.profile!).subscribe(() => this.chooseRandomPet());
+  }
+
   chooseRandomPet(): void {
     this.pets = this.loadMatchablePets();
     const randomIndex = Math.floor(Math.random() * this.pets.length);
