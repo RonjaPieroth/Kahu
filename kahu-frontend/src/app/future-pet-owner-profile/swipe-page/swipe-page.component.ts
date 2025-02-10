@@ -44,7 +44,7 @@ export class SwipePageComponent {
 
   loadMatchablePets(): Pet[] {
     return this.filteredPets.filter(
-      pet => !this.profile?.matches.some(match => match.id === pet.id)
+      pet => !(this.profile?.matches.some(match => match.id === pet.id || this.profile?.noMatchIds.some(id => id === pet.id)))
     );
   }
 
@@ -60,7 +60,10 @@ export class SwipePageComponent {
   }
 
   isNoMatch(): void {
-    this.chooseRandomPet();
+    if (this.pet?.id){
+    this.profile?.noMatchIds.push(this.pet!.id);
+      this.petOwnerService.modifyProfil(this.profile!).subscribe(() => this.chooseRandomPet());
+    }
   }
 
   setAge(age: { minAge?: number; maxAge?: number }):void{

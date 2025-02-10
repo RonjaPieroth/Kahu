@@ -23,4 +23,5 @@ export interface PetOwner {
   hasGarden: boolean;
   lookingFor: PetOwnershipType[];
   matches: Pet[];
+  noMatchIds: number[];
 }
