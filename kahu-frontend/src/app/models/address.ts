@@ -4,5 +4,6 @@ export interface Address {
   houseNumber: string;
   postalCode: number;
   city: string;
-  coordinates?: string;
+  lon?: string;
+  lat?: string;
 }
