@@ -24,7 +24,7 @@
         <h6 class="card-subtitle mb-2 text-body-secondary" *ngIf="petOwnerProfile.hasExperience">Experienced Kahu</h6>
         <h6 class="card-subtitle mb-2 text-body-secondary" *ngIf="!petOwnerProfile.hasExperience">First Time Kahu</h6>
         <p class="card-text">age: {{petOwnerProfile.age}}</p>
-        <p>Distance: ??? km</p>
+        <p>Postal code: {{petOwnerProfile.address.postalCode}}</p>
         <p>Is looking for: </p>
         <figure class="figure" *ngIf="petOwnerProfile.lookingFor.includes(PetOwnershipType.ADOPTION)">
           <img src="icons-pet-heart.png" class="figure-img img-fluid rounded me-5" alt="Ein Beispielbild">
