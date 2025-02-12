@@ -3,6 +3,7 @@ import {Login} from './login';
 import {PetOwnershipType} from './enums/pet-ownership-type';
 import {TypeOfHome} from './enums/type-of-home';
 import {ResidentialArea} from './enums/residential-area';
+import {Address} from './address';
 
 export interface PetOwner {
 
@@ -10,7 +11,7 @@ export interface PetOwner {
   login: Login;
   name: string;
   age: number;
-  postalCode: string;
+  address: Address;
   hasExperience: boolean;
   profilePicture: string;
   profileText: string;

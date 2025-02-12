@@ -6,20 +6,17 @@
   <form [formGroup]="profileForm" (submit)="submitProfile()">
     <p class="mb-3 fw-bold">Please answer some questions about yourself</p>
 
-    <div class="mb-3">
-      <label for="name" class="form-label">What's your name?</label>
-      <input type="text" class="form-control" id="name" formControlName="name">
-    </div>
+
     <div class="row">
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="name" class="form-label">What's your name?</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+      </div>
     <div class="mb-3 col-12 col-sm-6">
       <label for="age" class="form-label">How old are you?</label>
       <input type="number" class="form-control" id="age" step="1" formControlName="age">
     </div>
 
-    <div class="mb-3 col-12 col-sm-6">
-      <label for="postal-code" class="form-label">Please enter your postal code</label>
-      <input type="number" class="form-control" id="postal-code" step="1" formControlName="postalCode">
-    </div>
     </div>
     <div class="mb-3">
       <p>Do you already have experience with pets?</p>
@@ -44,6 +41,32 @@
     <div class="mb-3">
       <label for="exampleFormControlTextarea1" class="form-label">What would you like the current fosters of your future pet to know about you?</label>
       <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="profileText"></textarea>
+    </div>
+    <hr>
+    <div formGroupName="address">
+      <p class="mb-4 fw-bold">Please enter your address</p>
+      <div class="row">
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="street" class="form-label">Street:</label>
+        <input type="text" class="form-control" id="street" formControlName="streetName">
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="house-number" class="form-label">house number:</label>
+        <input type="text" class="form-control" id="house-number" formControlName="houseNumber">
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="postal-code" class="form-label">post code:</label>
+        <input type="number" class="form-control" step="1" id="postal-code" formControlName="postalCode">
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="city" class="form-label">City:</label>
+        <input type="text" class="form-control" id="city" formControlName="city">
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="country" class="form-label">Country:</label>
+        <input type="text" class="form-control" id="country" formControlName="country">
+      </div>
+      </div>
     </div>
     <hr>
     <p class="mb-4 fw-bold">We would like to know more about your living situation</p>

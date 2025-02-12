@@ -36,7 +36,6 @@ export class OwnerProfilFormComponent {
         login: [],
         name: ["", [Validators.required]],
         age: ["", Validators.required],
-        postalCode: ["", Validators.required],
         hasExperience: ["", Validators.required],
         profilePicture: [""],
         profileText: [""],
@@ -48,7 +47,16 @@ export class OwnerProfilFormComponent {
         hasGarden: ["", Validators.required],
         lookingFor: this.fb.array([], minSelectedCheckboxes(1)),
         pictures: this.fb.array([]),
-        matches: [[]]
+        matches: [[]],
+        address: fb.group(
+                  {
+                    country: ["", [Validators.required]],
+                    streetName: ["", [Validators.required]],
+                    houseNumber: ["", Validators.required],
+                    postalCode: ["", Validators.required],
+                    city: ["", Validators.required]
+                  }
+                )
       }
     );
   }
@@ -62,7 +70,6 @@ export class OwnerProfilFormComponent {
           id: this.profile.id,
           name: this.profile.name,
           age: this.profile.age,
-          postalCode: this.profile.postalCode,
           hasExperience: this.profile.hasExperience.toString(),
           profilePicture: this.profile.profilePicture,
           profileText: this.profile.profileText,
@@ -73,7 +80,16 @@ export class OwnerProfilFormComponent {
           homeSize: this.profile.homeSize,
           hasGarden: this.profile.hasGarden.toString(),
           lookingFor: this.profile.lookingFor,
-          matches: this.profile.matches
+          matches: this.profile.matches,
+          address: (
+                      {
+                        country: this.profile.address.country,
+                        streetName: this.profile.address.streetName,
+                        houseNumber: this.profile.address.houseNumber,
+                        postalCode: this.profile.address.postalCode,
+                        city: this.profile.address.city
+                      }
+                    )
         };
         this.profileForm.patchValue(newValues);
         const lookingForArray = this.profileForm.get('lookingFor') as FormArray;

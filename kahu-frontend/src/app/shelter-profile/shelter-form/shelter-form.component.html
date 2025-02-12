@@ -37,25 +37,27 @@
     <hr>
     <div formGroupName="address">
       <p class="mb-4 fw-bold">Please enter your address</p>
-      <div class="mb-3">
-        <label for="street" class="form-label">Street:</label>
-        <input type="text" class="form-control" id="street" formControlName="streetName">
-      </div>
-      <div class="mb-3">
-        <label for="house-number" class="form-label">house number:</label>
-        <input type="text" class="form-control" id="house-number" formControlName="houseNumber">
-      </div>
-      <div class="mb-3">
-        <label for="postal-code" class="form-label">post code:</label>
-        <input type="number" class="form-control" step="1" id="postal-code" formControlName="postalCode">
-      </div>
-      <div class="mb-3">
-        <label for="city" class="form-label">City:</label>
-        <input type="text" class="form-control" id="city" formControlName="city">
-      </div>
-      <div class="mb-3">
-        <label for="country" class="form-label">Country:</label>
-        <input type="text" class="form-control" id="country" formControlName="country">
+      <div class="row">
+        <div class="mb-3 col-12 col-sm-6">
+          <label for="street" class="form-label">Street:</label>
+          <input type="text" class="form-control" id="street" formControlName="streetName">
+        </div>
+        <div class="mb-3 col-12 col-sm-6">
+          <label for="house-number" class="form-label">house number:</label>
+          <input type="text" class="form-control" id="house-number" formControlName="houseNumber">
+        </div>
+        <div class="mb-3 col-12 col-sm-6">
+          <label for="postal-code" class="form-label">post code:</label>
+          <input type="number" class="form-control" step="1" id="postal-code" formControlName="postalCode">
+        </div>
+        <div class="mb-3 col-12 col-sm-6">
+          <label for="city" class="form-label">City:</label>
+          <input type="text" class="form-control" id="city" formControlName="city">
+        </div>
+        <div class="mb-3 col-12 col-sm-6">
+          <label for="country" class="form-label">Country:</label>
+          <input type="text" class="form-control" id="country" formControlName="country">
+        </div>
       </div>
     </div>
 
