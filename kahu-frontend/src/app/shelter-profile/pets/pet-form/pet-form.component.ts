@@ -79,7 +79,6 @@ export class PetFormComponent {
       requirements: this.petProfile.requirements,
       adoptionFee: this.petProfile.adoptionFee,
       lookingFor: this.petProfile.lookingFor,
-      shelter: this.petProfile.shelter,
       matches: this.petProfile.matches
     };
     this.profileForm.patchValue(newValues);
@@ -125,6 +124,7 @@ export class PetFormComponent {
 
   submitProfile() {
     let newProfile: Pet = this.profileForm.value;
+    newProfile.shelter = this.shelterProfile!;
     console.log(newProfile)
     if (this.petProfile) {
       this.updateProfile(newProfile);
