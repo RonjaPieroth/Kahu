@@ -43,8 +43,15 @@ export class ChatElementComponent implements OnChanges{
     }
   }
 
+get chatPartnerIsShelter(): boolean{
+  return !this.loginService.isPetOwner(this.chatpartner)
+}
 
-
-
+get profilePicture():string|null{
+  if("profilePicture" in this.chatpartner!){
+return this.chatpartner.profilePicture;
+  }
+  return null;
+}
 
 }

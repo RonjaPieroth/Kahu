@@ -1,8 +1,9 @@
 
   <div class="card mb-1" *ngIf="chat && chatpartner">
     <div class="card-body row">
-      <img src="{{pet.pictures[0]}}" class="img-fluid rounded-circle col-3" alt="{{pet.name}}" *ngIf="pet">
-      <img src="shelter.png" class="img-fluid rounded-circle col-3" alt="shelter" *ngIf="!pet">
+      <img src="{{pet.pictures[0]}}" class="img-fluid rounded-circle col-3" alt="{{pet.name}}" *ngIf="pet && chatPartnerIsShelter">
+      <img src="shelter.png" class="img-fluid rounded-circle col-3" alt="shelter" *ngIf="!pet && chatPartnerIsShelter">
+      <img src="{{profilePicture}}" class="img-fluid rounded-circle col-3" alt="shelter" *ngIf="!chatPartnerIsShelter">
       <div class="col ps-5 pt-1">
       <h5 class="card-title">{{chatpartner.name}} <span *ngIf="pet">- {{pet.name}}</span></h5>
       <p class="card-text pt-3 pb-2">{{chat.lastMessage.message}}</p>
