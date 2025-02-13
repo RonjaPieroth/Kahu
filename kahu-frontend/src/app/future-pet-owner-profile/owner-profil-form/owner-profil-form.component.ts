@@ -10,6 +10,9 @@ import {LoginService} from '../../services/login.service';
 import {PetOwnerService} from '../../services/pet-owner.service';
 import {NavbarService} from '../../services/navbar.service';
 import {Router} from '@angular/router';
+import { captureError } from 'rxjs/internal/util/errorContext';
+import { LocationIqService } from '../../services/location-iq.service';
+import { catchError } from 'rxjs';
 
 
 @Component({
@@ -21,6 +24,7 @@ export class OwnerProfilFormComponent {
   login?: Login;
   profile?: PetOwner;
   @Output() createdProfile = new EventEmitter();
+  errorMessage?: string;
 
 
   residentialAreaArray = Object.values(ResidentialArea);
@@ -29,7 +33,7 @@ export class OwnerProfilFormComponent {
 
   profileForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private petOwnerService: PetOwnerService, private navbarService: NavbarService, private router: Router) {
+  constructor(private fb: FormBuilder, private loginService: LoginService, private petOwnerService: PetOwnerService, private navbarService: NavbarService, private router: Router, private locationIqService: LocationIqService) {
 
     this.profileForm = fb.group(
       { id: [],
@@ -148,11 +152,13 @@ export class OwnerProfilFormComponent {
   }
 
   updateProfile(profile: PetOwner) {
-    this.petOwnerService.modifyProfil(profile).subscribe(data => {
+    this.petOwnerService.modifyProfil(profile).subscribe({next: data => {
       console.log("profile has been updated:")
       console.log(data);
-      this.router.navigate(["/profile"])
-    })
+      this.router.navigate(["/profile"]);
+    },
+   error: (error) => {this.errorMessage = error.message}
+    });
   }
 
   createProfile(profile: PetOwner): void {

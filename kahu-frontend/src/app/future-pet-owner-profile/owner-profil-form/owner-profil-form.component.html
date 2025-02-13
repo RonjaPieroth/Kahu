@@ -159,6 +159,7 @@
       {{ownershipType}}
     </label>
   </div>
+  <p *ngIf="errorMessage" class="text-danger">{{errorMessage}}</p>
 </div>
     <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Submit</button>
   </form>

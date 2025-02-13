@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { PetOwner } from '../models/pet-owner';
 import { Shelter } from '../models/shelter';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +28,19 @@ export class LocationIqService {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = radius * c;
     return distance;
+  }
+
+  handleError(error: HttpErrorResponse){
+    let errorMessage: string;
+    if(error.status === 500 || error.status === 0){
+      errorMessage = "Server error. Please try again later."
+    }
+    if(error.status === 404){
+      errorMessage = "We couldn't find you address. Please check your input."
+    }
+    else{
+      errorMessage = 'An error ocurred. Please try again.';
+    }
+    return throwError(() => new Error(errorMessage))
   }
 }
